@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saltmagasinet — Italienskt med svensk själ</title>
+<meta name="description" content="Modern svensk-italiensk restaurang i Örnsköldsvik. Lunch, middag, pizza & catering." />
+<!-- NY: Open Graph -->
+<meta property="og:type" content="restaurant.restaurant" />
+<meta property="og:title" content="Saltmagasinet — Italienskt med svensk själ" />
+<meta property="og:description" content="Meny, dagens lunch och Villa Saporito fryspizza. Varvskajen 1, Örnsköldsvik." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80" />
+<meta name="theme-color" content="#2D6A4F" />
+<!-- NY: Favicon (grön S) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%232D6A4F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='38' font-weight='700' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+<!-- NY: hero-bilden laddas med hög prioritet -->
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=80" fetchpriority="high" />
+<!-- NY: PDF-bibliotek -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2D6A4F;
+    --green-dark:#1B4332;
+    --green-light:#D8F3DC;
+    --green-mid:#40916C;
+    --green-soft:#52B788;
+    --ink:#111827;
+    --muted:#6B7280;
+    --line:#E5E7EB;
+    --bg:#FFFFFF;
+    --surface:#FAFAF9;
+    --shadow: 0 10px 30px -10px rgba(17,24,39,.15);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:140px}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  img{display:block;max-width:100%}
+
+  /* ---------- HEADER ---------- */
+  .header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1280px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-logo{
+    width:44px;height:44px;border-radius:50%;
+    background:linear-gradient(135deg,var(--green),var(--green-mid));
+    display:grid;place-items:center;color:#fff;
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+    box-shadow:0 4px 14px rgba(45,106,79,.35);
+  }
+  .brand-name{font-family:'Fraunces',serif;font-size:22px;font-weight:600;line-height:1}
+  .brand-sub{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+
+  .status{display:flex;align-items:center;gap:10px;font-size:14px}
+  .status-time{font-variant-numeric:tabular-nums;font-weight:500}
+  .status-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:#10B981;box-shadow:0 0 0 4px rgba(16,185,129,.18);
+    animation:pulse 2s infinite;
+  }
+  .status-dot.closed{background:#EF4444;box-shadow:0 0 0 4px rgba(239,68,68,.18);animation:none}
+  .status-label{font-weight:500}
+  .status-label.closed{color:#EF4444}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+  .lang-toggle{
+    display:inline-flex;border:1px solid var(--line);border-radius:999px;
+    padding:3px;background:var(--surface);
+  }
+  .lang-toggle button{
+    padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;
+    color:var(--muted);transition:.2s;
+  }
+  .lang-toggle button.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+  /* ---------- HERO / SPECIALS BANNER ---------- */
+  .hero{
+    max-width:1280px;margin:24px auto 0;padding:0 20px;
+  }
+  .special-banner{
+    position:relative;overflow:hidden;border-radius:20px;
+    background:linear-gradient(135deg,#1B4332 0%,#2D6A4F 100%);
+    color:#fff;
+    display:grid;grid-template-columns:1fr auto;gap:20px;
+    padding:32px;min-height:260px;
+  }
+  .special-banner::before{
+    content:"";position:absolute;inset:0;
+    background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=80');
+    background-size:cover;background-position:center;
+    opacity:.35;
+  }
+  .special-banner::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(27,67,50,.85) 0%,rgba(27,67,50,.4) 50%,rgba(27,67,50,.6) 100%);
+  }
+  .special-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;gap:8px}
+  .special-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:#FBBF24;font-weight:600;
+  }
+  .special-title{font-size:clamp(24px,4vw,36px);line-height:1.1}
+  .special-desc{color:#D1D5DB;max-width:520px}
+  .special-badge{
+    position:absolute;top:16px;right:16px;z-index:2;
+    background:var(--green);color:#fff;
+    font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 10px;border-radius:6px;
+  }
+  .special-btn{
+    align-self:flex-start;margin-top:8px;
+    background:#fff;color:var(--ink);
+    padding:10px 20px;border-radius:999px;font-weight:600;font-size:14px;
+    transition:.2s;position:relative;z-index:1;
+  }
+  .special-btn:hover{background:var(--green);color:#fff}
+
+  /* ---------- CATEGORY NAV ---------- */
+  .nav-wrap{
+    position:sticky;top:72px;z-index:40;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1280px;margin:0 auto;
+    display:flex;align-items:center;gap:8px;
+    padding:14px 20px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar{display:none}
+  .nav-tab{
+    flex-shrink:0;
+    padding:8px 18px;border-radius:999px;
+    font-size:14px;font-weight:500;color:var(--muted);
+    border:1px solid var(--line);background:#fff;
+    white-space:nowrap;transition:.2s;
+  }
+  .nav-tab:hover{color:var(--ink);border-color:#D1D5DB}
+  .nav-tab.active{
+    background:var(--green);color:#fff;border-color:var(--green);
+  }
+  .nav-tab .tab-icon{margin-right:6px}
+
+  /* ---------- FILTER BAR ---------- */
+  .filter-section{
+    max-width:1280px;margin:28px auto 0;padding:0 20px;
+  }
+  .filter-bar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .filter-chip{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 14px;border-radius:999px;
+    border:1px solid var(--line);background:#fff;
+    font-size:13px;font-weight:500;color:var(--ink);
+    transition:.2s;
+  }
+  .filter-chip:hover{border-color:var(--green);color:var(--green)}
+  .filter-chip.active{background:var(--green);color:#fff;border-color:var(--green)}
+  .clear-filters{
+    font-size:13px;color:var(--green);font-weight:600;
+    padding:8px 14px;transition:.2s;
+  }
+  .clear-filters:hover{text-decoration:underline}
+  .filter-count{margin-left:auto;font-size:13px;color:var(--muted)}
+
+  /* ---------- MENU SECTIONS ---------- */
+  .menu{
+    max-width:1280px;margin:0 auto;
+    padding:24px 20px 80px;
+  }
+  .menu-section{padding-top:32px}
+  .section-header{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    margin-bottom:24px;border-bottom:1px solid var(--line);
+    padding-bottom:16px;
+  }
+  .section-title{font-size:32px}
+  .section-sub{color:var(--muted);font-size:14px;margin-top:4px;font-style:italic}
+
+  .menu-grid{
+    display:grid;gap:24px;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  }
+
+  /* ---------- ITEM CARD ---------- */
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:.25s;cursor:pointer;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+    border-color:#D1D5DB;
+  }
+  .card-img-wrap{
+    position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--surface);
+  }
+  .card-img{
+    width:100%;height:100%;object-fit:cover;
+    transition:.4s;
+  }
+  .card:hover .card-img{transform:scale(1.05)}
+  .card-badges{
+    position:absolute;top:10px;left:10px;
+    display:flex;gap:4px;flex-wrap:wrap;
+  }
+  .diet-badge{
+    background:rgba(255,255,255,.95);backdrop-filter:blur(4px);
+    padding:4px 8px;border-radius:6px;font-size:11px;
+    display:inline-flex;align-items:center;gap:3px;
+    font-weight:500;
+  }
+  .chef-pick{
+    position:absolute;top:10px;right:10px;
+    background:var(--green);color:#fff;
+    font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:5px 9px;border-radius:6px;
+    display:inline-flex;align-items:center;gap:4px;
+  }
+  .abv-badge{
+    background:rgba(17,24,39,.85);color:#fff;
+    padding:4px 8px;border-radius:6px;font-size:10px;font-weight:600;
+    letter-spacing:.05em;
+  }
+  .card-body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card-title{font-family:'Fraunces',serif;font-size:19px;line-height:1.2}
+  .card-title-en{font-size:13px;color:var(--muted);font-style:italic;margin-top:-2px}
+  .card-desc{
+    font-size:13px;color:#4B5563;line-height:1.5;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+    overflow:hidden;min-height:2.8em;
+  }
+  .card-foot{
+    margin-top:auto;padding-top:12px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px dashed var(--line);
+  }
+  .card-price{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--green)}
+  .card-price small{font-size:13px;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif}
+  .price-split{display:flex;gap:12px;align-items:baseline}
+  .price-split .p-glass{font-size:13px;color:var(--muted);font-weight:500}
+  .price-split .p-glass strong{color:var(--ink);font-size:15px;font-family:'Fraunces',serif}
+  .price-split .p-bottle{font-size:13px;color:var(--muted);font-weight:500}
+  .price-split .p-bottle strong{color:var(--green);font-size:18px;font-family:'Fraunces',serif}
+  .card-cta{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--ink);color:#fff;
+    display:grid;place-items:center;transition:.2s;flex-shrink:0;
+  }
+  .card:hover .card-cta{background:var(--green)}
+  .card.hidden{display:none}
+
+  /* ---------- SUB-NAV for drinks ---------- */
+  .subnav{
+    display:flex;gap:8px;flex-wrap:wrap;
+    padding:12px 0 24px;
+  }
+  .subnav-btn{
+    padding:7px 14px;border-radius:999px;
+    background:#fff;border:1px solid var(--line);
+    font-size:13px;font-weight:500;color:var(--muted);
+    transition:.2s;
+  }
+  .subnav-btn:hover{color:var(--ink);border-color:#D1D5DB}
+  .subnav-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(17,24,39,.6);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open{display:flex;animation:fadeIn .25s}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .modal{
+    background:#fff;border-radius:20px;
+    max-width:640px;width:100%;max-height:90vh;
+    overflow-y:auto;position:relative;
+    animation:slideUp .3s;
+  }
+  @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .modal-img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:20px 20px 0 0}
+  .modal-close{
+    position:absolute;top:14px;right:14px;
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.95);color:var(--ink);
+    display:grid;place-items:center;transition:.2s;
+  }
+  .modal-close:hover{background:var(--green);color:#fff}
+  .modal-body{padding:28px}
+  .modal-title{font-size:28px;margin-bottom:4px}
+  .modal-title-en{color:var(--muted);font-style:italic;margin-bottom:16px;font-size:15px}
+  .modal-desc{color:#374151;line-height:1.6;margin-bottom:20px}
+  .modal-section{margin-bottom:20px}
+  .modal-section h4{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+  .ingredients{display:flex;flex-wrap:wrap;gap:6px}
+  .ingredient{background:var(--surface);padding:5px 10px;border-radius:6px;font-size:13px}
+  .allergen-warn{
+    background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;
+    padding:12px 14px;border-radius:10px;font-size:13px;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .custom-option{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+    margin-bottom:8px;transition:.2s;cursor:pointer;
+  }
+  .custom-option:hover{border-color:var(--green);background:#F0FDF4}
+  .custom-option.selected{background:#F0FDF4;border-color:var(--green)}
+  .custom-price{color:var(--muted);font-size:13px}
+  .modal-foot{
+    padding:20px 28px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    position:sticky;bottom:0;background:#fff;
+  }
+  .modal-price{font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--green)}
+  .modal-price small{font-size:13px;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif;display:block}
+  .add-btn{
+    background:var(--ink);color:#fff;
+    padding:14px 28px;border-radius:999px;font-weight:600;
+    transition:.2s;flex:1;max-width:260px;
+  }
+  .add-btn:hover{background:var(--green)}
+
+  /* Age-gate modal */
+  .age-gate{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(17,24,39,.8);backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .age-gate.hidden{display:none}
+  .age-gate-box{
+    background:#fff;border-radius:20px;padding:40px;max-width:420px;
+    text-align:center;
+  }
+  .age-gate-box h2{font-size:26px;margin-bottom:8px}
+  .age-gate-box p{color:var(--muted);margin-bottom:24px}
+  .age-gate-btns{display:flex;gap:12px;justify-content:center}
+  .age-btn{
+    padding:12px 28px;border-radius:999px;font-weight:600;font-size:15px;
+    transition:.2s;
+  }
+  .age-btn.yes{background:var(--ink);color:#fff}
+  .age-btn.yes:hover{background:var(--green)}
+  .age-btn.no{background:#fff;color:var(--ink);border:1px solid var(--line)}
+
+  /* ---------- TOAST ---------- */
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);
+    background:var(--ink);color:#fff;padding:14px 22px;border-radius:999px;
+    font-size:14px;font-weight:500;z-index:150;
+    transition:.3s;opacity:0;display:flex;align-items:center;gap:8px;
+    box-shadow:var(--shadow);
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+  /* ---------- VILLA SAPORITO ---------- */
+  .villa-section{
+    max-width:1280px;margin:0 auto;padding:0 20px 60px;
+  }
+  .villa-inner{
+    background:linear-gradient(135deg,var(--green-dark),var(--green));
+    border-radius:20px;padding:36px;color:#fff;
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    align-items:center;
+  }
+  .villa-inner h3{font-size:28px;margin-bottom:8px}
+  .villa-inner p{color:#D8F3DC;line-height:1.7}
+  .villa-prices{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;
+  }
+  .villa-price-item{
+    background:rgba(255,255,255,.1);padding:10px 14px;border-radius:10px;
+    font-size:14px;
+  }
+  .villa-price-item strong{display:block;font-size:16px}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#111827;color:#D1D5DB;
+    padding:48px 20px 28px;
+  }
+  .footer-inner{
+    max-width:1280px;margin:0 auto;
+    display:grid;gap:32px;
+    grid-template-columns:1.2fr 1fr 1fr;
+  }
+  .footer h4{font-family:'Fraunces',serif;color:#fff;font-size:18px;margin-bottom:12px}
+  .footer p,.footer a{font-size:14px;color:#9CA3AF;line-height:1.7}
+  .footer a:hover{color:var(--green-soft)}
+  .footer-brand{font-family:'Fraunces',serif;font-size:24px;color:#fff;margin-bottom:8px}
+  .footer-actions{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .pdf-btn,.qr-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    padding:10px 16px;border-radius:10px;color:#fff;
+    font-size:13px;font-weight:500;transition:.2s;
+    width:fit-content;
+  }
+  .pdf-btn:hover,.qr-btn:hover{background:var(--green);border-color:var(--green)}
+  .qr-display{
+    width:120px;height:120px;background:#fff;border-radius:10px;
+    display:grid;place-items:center;margin-top:8px;
+  }
+  .qr-display svg{width:100%;height:100%;padding:8px}
+  .footer-bottom{
+    max-width:1280px;margin:40px auto 0;padding-top:24px;
+    border-top:1px solid rgba(255,255,255,.08);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:12px;color:#6B7280;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    html{scroll-padding-top:200px}
+    .nav-wrap{top:132px}
+    .header-inner{flex-wrap:wrap}
+    .status{order:3;width:100%;justify-content:space-between;padding-top:8px;border-top:1px solid var(--line);margin-top:4px}
+    .brand-sub{display:none}
+    .special-banner{grid-template-columns:1fr;padding:24px}
+    .section-title{font-size:26px}
+    .menu-grid{grid-template-columns:1fr 1fr;gap:14px}
+    .card-body{padding:12px}
+    .card-title{font-size:16px}
+    .villa-inner{grid-template-columns:1fr;padding:24px}
+    .footer-inner{grid-template-columns:1fr}
+    .age-gate-box{padding:28px 24px}
+  }
+  @media (max-width:420px){
+    .menu-grid{grid-template-columns:1fr}
+    .villa-prices{grid-template-columns:1fr}
+  }
+
+  /* ===== NY: tillägg ===== */
+  :focus-visible{outline:3px solid var(--green-soft);outline-offset:2px}
+  .header-right{display:flex;align-items:center;gap:10px}
+  .cart-btn{position:relative;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:18px;display:grid;place-items:center}
+  .cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+  .cart-count.zero{display:none}
+  .card:focus-visible{border-color:var(--green)}
+  /* Lunch */
+  .lunch-today{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+  .lunch-today img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+  .lunch-today-body{padding:24px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+  .lunch-tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--green)}
+  .lunch-price{font-family:'Fraunces',serif;font-size:22px;color:var(--green);font-weight:600}
+  .lunch-incl{font-size:13px;color:var(--muted)}
+  .lunch-closed{padding:24px;border:1px dashed var(--line);border-radius:16px;background:var(--surface);color:#4B5563}
+  .lunch-week{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+  .lunch-day{border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;background:#fff}
+  .lunch-day.today{border-color:var(--green);background:#F0FDF4}
+  .lunch-day strong{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  /* Villa */
+  .villa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .villa-card{background:rgba(255,255,255,.1);border-radius:12px;padding:8px;text-align:left;color:#fff;transition:.2s}
+  .villa-card:hover{background:rgba(255,255,255,.2)}
+  .villa-card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:6px}
+  .villa-card strong{display:block;font-size:14px}
+  .villa-card span{font-size:13px;color:#D8F3DC}
+  .villa-buy{margin-top:12px;font-size:14px}
+  .villa-order{display:inline-block;margin-top:16px;background:#fff;color:var(--green-dark);padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px}
+  .villa-order:hover{background:var(--green-soft);color:#fff}
+  /* Footer / QR / PDF */
+  .footer-bottom{color:#9CA3AF}
+  .qr-display{width:132px;height:132px;padding:6px}
+  .qr-display img{width:100%;height:100%;border-radius:6px}
+  .qr-hint{font-size:12px;color:#9CA3AF;margin-top:6px;max-width:180px}
+  .pdf-btn[disabled]{opacity:.7;cursor:progress}
+  .spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;display:inline-block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (max-width:760px){
+    .lunch-today{grid-template-columns:1fr}
+    .lunch-week{grid-template-columns:1fr 1fr}
+    .header-right{gap:6px}
+  }
+  @media (max-width:420px){ .villa-grid{grid-template-columns:1fr 1fr} .lunch-week{grid-template-columns:1fr} }
+  /* NY: respektera reducerad rörelse */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= AGE GATE (for alcohol) ================= -->
+<div class="age-gate hidden" id="ageGate">
+  <div class="age-gate-box">
+    <h2 data-i18n="ageGateTitle">Åldersgräns 20 år</h2>
+    <p data-i18n="ageGateText">För att beställa alkoholhaltiga drycker måste du vara minst 20 år.</p>
+    <div class="age-gate-btns">
+      <button class="age-btn yes" id="ageYes" data-i18n="ageYes">Ja, jag är 20+</button>
+      <button class="age-btn no" id="ageNo" data-i18n="ageNo">Nej</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-logo">S</div>
+      <div>
+        <div class="brand-name">Saltmagasinet</div>
+        <div class="brand-sub" data-i18n="tagline">Helt enkelt italienskt</div>
+      </div>
+    </div>
+
+    <div class="status">
+      <span class="status-time" id="clock">--:--</span>
+      <span class="status-dot" id="statusDot"></span>
+      <span class="status-label" id="statusLabel" data-i18n="openNow">Öppet nu</span>
+    </div>
+
+    <div class="header-right">
+      <!-- NY: kundvagn -->
+      <button class="cart-btn" id="cartBtn" aria-label="Beställning: 0 rätter"><span aria-hidden="true">🛒</span><span class="cart-count zero" id="cartCount" aria-hidden="true">0</span></button>
+      <div class="lang-toggle" role="group" aria-label="Språk / Language">
+        <button class="active" data-lang="sv" aria-pressed="true" aria-label="Svenska">SV</button>
+        <button data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO / SPECIALS BANNER ================= -->
+<section class="hero">
+  <div class="special-banner">
+    <span class="special-badge" data-i18n="limitedTime">Begränsad tid</span>
+    <div class="special-content">
+      <span class="special-eyebrow">⭐ <span data-i18n="chefPick">Kockens val</span></span>
+      <h2 class="special-title" data-i18n="specialTitle">Dagens lunch — 145 kr</h2>
+      <p class="special-desc" data-i18n="specialDesc">Bresaola, Cavati alla Norma, Salmone eller dagens pizza. Bordsvatten, kaffe & kaka ingår.</p>
+      <a href="#lunch" class="special-btn" data-i18n="seeTodays">Se dagens meny →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORY NAV ================= -->
+<nav class="nav-wrap" aria-label="Kategorier">
+  <div class="nav-inner" id="navInner">
+    <button class="nav-tab active" data-cat="all"><span class="tab-icon">🍽️</span><span data-i18n="all">Alla</span></button>
+    <button class="nav-tab" data-cat="antipasti"><span class="tab-icon">🥗</span><span data-i18n="antipasti">Antipasti</span></button>
+    <button class="nav-tab" data-cat="pasta"><span class="tab-icon">🍝</span><span>Pasta</span></button>
+    <button class="nav-tab" data-cat="pesce"><span class="tab-icon">🐟</span><span data-i18n="pesce">Pesce</span></button>
+    <button class="nav-tab" data-cat="pizza"><span class="tab-icon">🍕</span><span>Pizza</span></button>
+    <button class="nav-tab" data-cat="lunch"><span class="tab-icon">☀️</span><span data-i18n="lunch">Lunch</span></button>
+    <button class="nav-tab" data-cat="dolci"><span class="tab-icon">🍰</span><span data-i18n="dolci">Dolci</span></button>
+    <button class="nav-tab" data-cat="dryck"><span class="tab-icon">🍷</span><span data-i18n="dryck">Dryck</span></button>
+    <button class="nav-tab" data-cat="villa"><span class="tab-icon">🏭</span><span data-i18n="villa">Villa Saporito</span></button>
+  </div>
+</nav>
+
+<!-- ================= FILTER BAR ================= -->
+<section class="filter-section">
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-chip" data-filter="vegetarian">🌱 <span data-i18n="vegetarian">Vegetariskt</span></button>
+    <button class="filter-chip" data-filter="vegan">🌿 <span data-i18n="vegan">Veganskt</span></button>
+    <button class="filter-chip" data-filter="glutenfree">GF <span data-i18n="glutenfree">Glutenfritt</span></button>
+    <button class="filter-chip" data-filter="spicy">🌶️ <span data-i18n="spicy">Starkt</span></button>
+    <button class="filter-chip" data-filter="chef">⭐ <span data-i18n="chefPicks">Kockens val</span></button>
+    <button class="filter-chip" data-filter="alcohol">🍷 <span data-i18n="alcohol">Med alkohol</span></button>
+    <button class="filter-chip" data-filter="nonalc">🚫 <span data-i18n="nonalc">Alkoholfritt</span></button>
+    <button class="clear-filters" id="clearFilters" data-i18n="clearAll">Rensa alla</button>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<main class="menu">
+
+  <section class="menu-section" id="antipasti">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title" data-i18n="antipasti">Antipasti</h2>
+        <div class="section-sub" data-i18n="antipastiSub">Italienska förrätter</div>
+      </div>
+    </div>
+    <div class="menu-grid" id="grid-antipasti"></div>
+  </section>
+
+  <section class="menu-section" id="pasta">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Pasta</h2>
+        <div class="section-sub" data-i18n="pastaSub">Hemgjord pasta från grunden</div>
+      </div>
+    </div>
+    <div class="menu-grid" id="grid-pasta"></div>
+  </section>
+
+  <section class="menu-section" id="pesce">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title" data-i18n="pesce">Pesce</h2>
+        <div class="section-sub" data-i18n="pesceSub">Fisk & skaldjur</div>
+      </div>
+    </div>
+    <div class="menu-grid" id="grid-pesce"></div>
+  </section>
+
+  <section class="menu-section" id="pizza">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Pizza</h2>
+        <div class="section-sub" data-i18n="pizzaSub">Surdeg & vedugnsbakad</div>
+      </div>
+    </div>
+    <div class="menu-grid" id="grid-pizza"></div>
+  </section>
+
+  <!-- NY: LUNCH -->
+  <section class="menu-section" id="lunch">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title" data-i18n="lunchTitle">Dagens lunch</h2>
+        <div class="section-sub" data-i18n="lunchSub">Tisdag–fredag 11–14</div>
+      </div>
+    </div>
+    <div id="lunchBody" aria-live="polite"></div>
+  </section>
+
+  <section class="menu-section" id="dolci">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title" data-i18n="dolci">Dolci</h2>
+        <div class="section-sub" data-i18n="dolciSub">Desserter</div>
+      </div>
+    </div>
+    <div class="menu-grid" id="grid-dolci"></div>
+  </section>
+
+  <!-- ============== DRYCK (with sub-nav) ============== -->
+  <section class="menu-section" id="dryck">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title" data-i18n="dryck">Dryck</h2>
+        <div class="section-sub" data-i18n="dryckSub">Italienska viner, öl, cocktails & kaffe — Salute!</div>
+      </div>
+    </div>
+
+    <div class="subnav" id="drinkSubnav">
+      <button class="subnav-btn active" data-sub="all" data-i18n="drinkAll">Alla drycker</button>
+      <button class="subnav-btn" data-sub="cocktails" data-i18n="drinkCocktails">Cocktails & Aperitif</button>
+      <button class="subnav-btn" data-sub="sparkling" data-i18n="drinkSparkling">Mousserande</button>
+      <button class="subnav-btn" data-sub="white" data-i18n="drinkWhite">Vitt & Rosé</button>
+      <button class="subnav-btn" data-sub="red" data-i18n="drinkRed">Rött</button>
+      <button class="subnav-btn" data-sub="beer" data-i18n="drinkBeer">Öl & Cider</button>
+      <button class="subnav-btn" data-sub="nonalc" data-i18n="drinkNonAlc">Alkoholfritt</button>
+      <button class="subnav-btn" data-sub="coffee" data-i18n="drinkCoffee">Kaffe</button>
+      <button class="subnav-btn" data-sub="dessert" data-i18n="drinkDessert">Dessertvin</button>
+    </div>
+
+    <div class="menu-grid" id="grid-dryck"></div>
+  </section>
+
+  <!-- ============== VILLA SAPORITO ============== -->
+  <section class="villa-section" id="villa">
+    <div class="villa-inner">
+      <div>
+        <h3>🏭 Villa Saporito</h3>
+        <p data-i18n="villaDesc">Fyll frysen med riktigt god stenugnsbakad pizza.</p>
+        <p class="villa-buy" data-i18n="villaBuy">Fråga i restaurangen eller ring för att beställa.</p>
+        <a class="villa-order" href="tel:+46660222166" data-i18n="villaOrder" aria-label="Beställ Villa Saporito via telefon">Beställ: 0660-22 21 66</a>
+      </div>
+      <div class="villa-grid" id="villaGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= MODAL ================= -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modalInner">
+    <button class="modal-close" id="modalClose" aria-label="Stäng">✕</button>
+    <img class="modal-img" id="modalImg" alt="" width="800" height="500" />
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <div class="modal-price" id="modalPrice">0 kr</div>
+      <button class="add-btn" id="addBtn" data-i18n="addToOrder">Lägg till i beställning</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span></div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Saltmagasinet</div>
+      <p data-i18n="footerAbout">Modern svensk-italiensk restaurang i hjärtat av Örnsköldsvik. Vi lagar mat från grunden med kärlek till både det italienska och det nordiska.</p>
+      <p style="margin-top:12px">📍 Varvskajen 1, 891 31 Örnsköldsvik<br>
+      📞 <a href="tel:+46660222166">0660-22 21 66</a></p>
+    </div>
+
+    <div>
+      <h4 data-i18n="hours">Öppettider</h4>
+      <p>Tis–Fre: 11–14 (lunch) · 16–20*</p>
+      <p>Fre–Lör: 16–21*</p>
+      <p>Sön: 16–20*</p>
+      <p style="margin-top:8px;font-size:12px" data-i18n="hoursNote">* Köket stänger, restaurangen öppen en stund till.</p>
+    </div>
+
+    <div>
+      <h4 data-i18n="shareMenu">Dela & ladda ner</h4>
+      <div class="footer-actions">
+        <!-- NY: riktig PDF -->
+        <button class="pdf-btn" id="pdfMenuBtn" type="button"><span aria-hidden="true">📄</span> <span class="pdf-label" data-i18n="downloadPdf">Ladda ner meny (PDF)</span></button>
+        <button class="pdf-btn" id="pdfLunchBtn" type="button"><span aria-hidden="true">📄</span> <span class="pdf-label" data-i18n="downloadLunch">Ladda ner lunchmeny (PDF)</span></button>
+        <div class="qr-btn"><span aria-hidden="true">📱</span> <span data-i18n="scanQr">Skanna QR</span></div>
+      </div>
+      <!-- NY: riktig, skanningsbar QR (qrserver.com) -->
+      <a class="qr-display" id="qrLink" href="https://www.saltmagasinet.com" target="_blank" rel="noopener" aria-label="Öppna menyn i ny flik">
+        <img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=https%3A%2F%2Fwww.saltmagasinet.com" width="120" height="120" alt="QR-kod till Saltmagasinets meny" loading="lazy" />
+      </a>
+      <div class="qr-hint" data-i18n="qrHint">Skanna för att öppna menyn på mobilen</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Saltmagasinet Mat & Dryck AB</span>
+    <span><span data-i18n="lastUpdated">Senast uppdaterad</span>: <span id="lastUpdated"></span></span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   SALTSMAGASINET — COMPLETE MENU LOGIC (Food + Drinks)
+========================================================= */
+
+/* ---------- 1. Menu Data (Food) ---------- */
+const FOOD = [
+  // ---- ANTIPASTI ----
+  {
+    id:'bresaola', cat:'antipasti',
+    sv:'Bresaola', en:'Air-dried Beef',
+    desc:'Lufttorkat nötkött med rucola, valnötter, Grana Padano och citronolja.',
+    descEn:'Air-dried beef with arugula, walnuts, Grana Padano and lemon oil.',
+    price:155, img:'https://images.unsplash.com/photo-1625937286074-9ca5d43d080f?w=800&q=80',
+    diet:['glutenfree'], allergens:['Nötter','Mjölk'],
+    ingredients:['Bresaola','Rucola','Valnötter','Grana Padano','Citronolja'],
+    nutrition:{kcal:320,protein:'28g',fat:'21g',carbs:'3g'}, chef:true
+  },
+  {
+    id:'bruschetta', cat:'antipasti',
+    sv:'Bruschetta al Pomodoro', en:'Tomato Bruschetta',
+    desc:'Rostat surdegsbröd med körsbärstomater, vitlök, basilika och extra jungfruolivolja.',
+    descEn:'Toasted sourdough with cherry tomatoes, garlic, basil and extra virgin olive oil.',
+    price:95, img:'https://images.unsplash.com/photo-1572441713132-c542fc4fe282?w=800&q=80',
+    diet:['vegetarian','vegan'], allergens:['Gluten'],
+    ingredients:['Surdeg','Körsbärstomater','Vitlök','Basilika','Olivolja']
+  },
+  {
+    id:'burrata', cat:'antipasti',
+    sv:'Burrata con Prosciutto', en:'Burrata with Prosciutto',
+    desc:'Krämig burrata med lufttorkad skinka, körsbärstomater och basilika.',
+    descEn:'Creamy burrata with air-dried ham, cherry tomatoes and basil.',
+    price:185, img:'https://images.unsplash.com/photo-1625938145314-1a2b0e5c2b6b?w=800&q=80',
+    diet:['glutenfree'], allergens:['Mjölk'],
+    ingredients:['Burrata','Prosciutto','Körsbärstomater','Basilika','Olivolja'], chef:true
+  },
+  {
+    id:'carpaccio', cat:'antipasti',
+    sv:'Carpaccio di Manzo', en:'Beef Carpaccio',
+    desc:'Tunt skivad råbiff med rucola, Parmesan, kapris och citron.',
+    descEn:'Thinly sliced raw beef with arugula, Parmesan, capers and lemon.',
+    price:175, img:'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
+    diet:['glutenfree'], allergens:['Mjölk'],
+    ingredients:['Råbiff','Rucola','Parmesan','Kapris','Citron']
+  },
+
+  // ---- PASTA ----
+  {
+    id:'cavati-norma', cat:'pasta',
+    sv:'Cavati alla Norma', en:'Cavati alla Norma',
+    desc:'Hemgjord pasta med tomatsås, aubergine, basilika och saltad ricotta.',
+    descEn:'Homemade pasta with tomato sauce, aubergine, basil and salted ricotta.',
+    price:185, img:'https://images.unsplash.com/photo-1551183053-bf91a1792441?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Hemgjord pasta','Tomatsås','Aubergine','Basilika','Saltad ricotta'], chef:true
+  },
+  {
+    id:'carbonara', cat:'pasta',
+    sv:'Spaghetti Carbonara', en:'Spaghetti Carbonara',
+    desc:'Klassisk romersk carbonara med guanciale, pecorino, äggula och svartpeppar.',
+    descEn:'Classic Roman carbonara with guanciale, pecorino, egg yolk and black pepper.',
+    price:195, img:'https://images.unsplash.com/photo-1612874742237-652aa82271d3?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk','Ägg'],
+    ingredients:['Spaghetti','Guanciale','Pecorino Romano','Äggula','Svartpeppar']
+  },
+  {
+    id:'tagliatelle', cat:'pasta',
+    sv:'Tagliatelle med tryffel', en:'Tagliatelle with Truffle',
+    desc:'Hemgjord tagliatelle i smör med svart tryffel, salvia och Parmesan.',
+    descEn:'Homemade tagliatelle in butter with black truffle, sage and Parmesan.',
+    price:235, img:'https://images.unsplash.com/photo-1556761223-4c4d320d3f51?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk','Ägg'],
+    ingredients:['Tagliatelle','Smör','Svart tryffel','Salvia','Parmesan'], chef:true
+  },
+  {
+    id:'ravioli', cat:'pasta',
+    sv:'Ravioli di Ricotta e Spinaci', en:'Ricotta & Spinach Ravioli',
+    desc:'Hemgjord ravioli fylld med ricotta och spenat, serverad med salvia-smör.',
+    descEn:'Homemade ravioli filled with ricotta and spinach, served with sage butter.',
+    price:205, img:'https://images.unsplash.com/photo-1587740908075-9e245070dfaa?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk','Ägg'],
+    ingredients:['Ravioli','Ricotta','Spenat','Salvia','Smör']
+  },
+  {
+    id:'gnocchi', cat:'pasta',
+    sv:'Gnocchi al Pesto', en:'Gnocchi with Pesto',
+    desc:'Mjuka potatisgnocchi med basilikapesto, pinjenötter och Parmesan.',
+    descEn:'Soft potato gnocchi with basil pesto, pine nuts and Parmesan.',
+    price:185, img:'https://images.unsplash.com/photo-1587740908075-9e245070dfaa?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk','Nötter'],
+    ingredients:['Gnocchi','Basilikapesto','Pinjenötter','Parmesan']
+  },
+
+  // ---- PESCE ----
+  {
+    id:'salmone', cat:'pesce',
+    sv:'Salmone', en:'Pan-seared Salmon',
+    desc:'Laxfilé med potatis, spenat, granatäpple och balsamicodressing.',
+    descEn:'Salmon fillet with potato, spinach, pomegranate and balsamic dressing.',
+    price:245, img:'https://images.unsplash.com/photo-1467003909585-2f8a72713616?w=800&q=80',
+    diet:['glutenfree'], allergens:['Fisk'],
+    ingredients:['Laxfilé','Potatis','Spenat','Granatäpple','Balsamicodressing'], chef:true
+  },
+  {
+    id:'tonno', cat:'pesce',
+    sv:'Tonno Scottato', en:'Seared Tuna',
+    desc:'Svartpeppar-stekt tonfisk med kapris, oliver, tomat och basilika.',
+    descEn:'Black-pepper seared tuna with capers, olives, tomato and basil.',
+    price:265, img:'https://images.unsplash.com/photo-1559847844-535dc0978abc?w=800&q=80',
+    diet:['glutenfree'], allergens:['Fisk'],
+    ingredients:['Tonfisk','Kapris','Oliver','Körsbärstomat','Basilika']
+  },
+  {
+    id:'gamberi', cat:'pesce',
+    sv:'Gamberi all\'Aglio', en:'Garlic Shrimp',
+    desc:'Kungliga räkor i vitlök, chili och vitt vin med rostat bröd.',
+    descEn:'King prawns in garlic, chilli and white wine with toasted bread.',
+    price:225, img:'https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80',
+    diet:['spicy'], allergens:['Skaldjur','Gluten'],
+    ingredients:['Kungliga räkor','Vitlök','Chili','Vitt vin','Rostat bröd']
+  },
+
+  // ---- PIZZA ----
+  {
+    id:'margherita', cat:'pizza',
+    sv:'Margherita', en:'Margherita',
+    desc:'Tomatsås, mozzarella di bufala, färsk basilika och extra jungfruolivolja.',
+    descEn:'Tomato sauce, buffalo mozzarella, fresh basil and extra virgin olive oil.',
+    price:155, img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Buffelmozzarella','Basilika','Olivolja']
+  },
+  {
+    id:'calabrese', cat:'pizza',
+    sv:'Calabrese', en:'Calabrese',
+    desc:'Tomatsås, mozzarella, kryddig salami och svarta oliver.',
+    descEn:'Tomato sauce, mozzarella, spicy salami and black olives.',
+    price:169, img:'https://images.unsplash.com/photo-1628840042630-8a3a9d89d9fc?w=800&q=80',
+    diet:['spicy'], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Kryddig salami','Oliver']
+  },
+  {
+    id:'capricciosa', cat:'pizza',
+    sv:'Capricciosa Italiana', en:'Capricciosa Italiana',
+    desc:'Tomatsås, mozzarella, kokt skinka, champinjoner, oliver, kronärtskocka.',
+    descEn:'Tomato sauce, mozzarella, cooked ham, mushrooms, olives and artichoke.',
+    price:188, img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Skinka','Champinjon','Oliver','Kronärtskocka']
+  },
+  {
+    id:'bufala', cat:'pizza',
+    sv:'Bufala', en:'Bufala',
+    desc:'Tomatsås, buffelmozzarella, körsbärstomater och färsk basilika.',
+    descEn:'Tomato sauce, buffalo mozzarella, cherry tomatoes and fresh basil.',
+    price:169, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Buffelmozzarella','Körsbärstomat','Basilika']
+  },
+  {
+    id:'ortolana', cat:'pizza',
+    sv:'Ortolana', en:'Ortolana (Veggie)',
+    desc:'Tomatsås, mozzarella, zucchini, paprika, aubergine, rödlök och basilika.',
+    descEn:'Tomato sauce, mozzarella, zucchini, bell pepper, aubergine, red onion and basil.',
+    price:179, img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Zucchini','Paprika','Aubergine','Rödlök','Basilika']
+  },
+  {
+    id:'norma-pizza', cat:'pizza',
+    sv:'Norma', en:'Norma',
+    desc:'Tomatsås, mozzarella, aubergine, körsbärstomater, saltad ricotta och basilika.',
+    descEn:'Tomato sauce, mozzarella, aubergine, cherry tomatoes, salted ricotta and basil.',
+    price:160, img:'https://images.unsplash.com/photo-1595708609504-5f5c0ff0a6d3?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Aubergine','Körsbärstomat','Saltad ricotta','Basilika']
+  },
+  {
+    id:'crudo', cat:'pizza',
+    sv:'Crudo', en:'Crudo',
+    desc:'Tomatsås, mozzarella, lufttorkad skinka, rucola och Parmesan.',
+    descEn:'Tomato sauce, mozzarella, air-dried ham, arugula and Parmesan.',
+    price:198, img:'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Lufttorkad skinka','Rucola','Parmesan'], chef:true
+  },
+  {
+    id:'speck', cat:'pizza',
+    sv:'Speck e Gorgonzola', en:'Speck & Gorgonzola',
+    desc:'Tomatsås, mozzarella, sydtiroler-speck och krämig gorgonzola.',
+    descEn:'Tomato sauce, mozzarella, Tyrolean speck and creamy gorgonzola.',
+    price:188, img:'https://images.unsplash.com/photo-1593504049359-7ae55c589863?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Speck','Gorgonzola']
+  },
+  {
+    id:'salsiccia', cat:'pizza',
+    sv:'Salsiccia', en:'Salsiccia',
+    desc:'Tomatsås, mozzarella, italiensk korv, rödlök och paprika.',
+    descEn:'Tomato sauce, mozzarella, Italian sausage, red onion and bell pepper.',
+    price:198, img:'https://images.unsplash.com/photo-1576458088443-04119bb13da6?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Salsiccia','Rödlök','Paprika']
+  },
+  {
+    id:'quattro', cat:'pizza',
+    sv:'Quattro Formaggi', en:'Four Cheese',
+    desc:'Mozzarella, fontal, gorgonzola och Parmesan med oregano.',
+    descEn:'Mozzarella, fontal, gorgonzola and Parmesan with oregano.',
+    price:169, img:'https://images.unsplash.com/photo-1548369937-47519962c11a?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Mozzarella','Fontal','Gorgonzola','Parmesan','Oregano']
+  },
+  {
+    id:'calzone', cat:'pizza',
+    sv:'Calzone', en:'Calzone',
+    desc:'Inbakad pizza med tomatsås, mozzarella, skinka och champinjoner.',
+    descEn:'Folded pizza with tomato sauce, mozzarella, ham and mushrooms.',
+    price:160, img:'https://images.unsplash.com/photo-1590947181946-0ee1c42bd559?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Skinka','Champinjon','Oregano']
+  },
+  {
+    id:'funghi', cat:'pizza',
+    sv:'Funghi', en:'Funghi',
+    desc:'Tomatsås, mozzarella, champinjoner och oregano.',
+    descEn:'Tomato sauce, mozzarella, mushrooms and oregano.',
+    price:150, img:'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=800&q=80',
+    diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Champinjon','Oregano']
+  },
+  {
+    id:'siciliana', cat:'pizza',
+    sv:'Siciliana', en:'Siciliana',
+    desc:'Tomatsås, sardeller, oliver, rödlök, pecorino och oregano.',
+    descEn:'Tomato sauce, anchovies, olives, red onion, pecorino and oregano.',
+    price:160, img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk','Fisk'],
+    ingredients:['Tomatsås','Sardeller','Oliver','Rödlök','Pecorino','Oregano']
+  },
+  {
+    id:'cotto', cat:'pizza',
+    sv:'Cotto', en:'Cotto',
+    desc:'Tomatsås, mozzarella, kokt skinka och oregano.',
+    descEn:'Tomato sauce, mozzarella, cooked ham and oregano.',
+    price:150, img:'https://images.unsplash.com/photo-1628840042630-8a3a9d89d9fc?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Kokt skinka','Oregano']
+  },
+  {
+    id:'romana', cat:'pizza',
+    sv:'Romana', en:'Romana',
+    desc:'Tomatsås, mozzarella, kokt skinka, champinjoner och oregano.',
+    descEn:'Tomato sauce, mozzarella, cooked ham, mushrooms and oregano.',
+    price:160, img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Tomatsås','Mozzarella','Kokt skinka','Champinjon','Oregano']
+  },
+  {
+    id:'tonno-pizza', cat:'pizza',
+    sv:'Tonno', en:'Tonno',
+    desc:'Tomatsås, mozzarella, tonfisk, rödlök, kapris och oregano.',
+    descEn:'Tomato sauce, mozzarella, tuna, red onion, capers and oregano.',
+    price:169, img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk','Fisk'],
+    ingredients:['Tomatsås','Mozzarella','Tonfisk','Rödlök','Kapris','Oregano']
+  },
+  {
+    id:'pancetta', cat:'pizza',
+    sv:'Pancetta e Scamorza', en:'Pancetta & Scamorza',
+    desc:'Mozzarella, scamorza, rökt pancetta, rödlök och oregano.',
+    descEn:'Mozzarella, scamorza, smoked pancetta, red onion and oregano.',
+    price:169, img:'https://images.unsplash.com/photo-1593504049359-7ae55c589863?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Mozzarella','Scamorza','Rökt pancetta','Rödlök','Oregano']
+  },
+  {
+    id:'bresola-pizza', cat:'pizza',
+    sv:'Bresaola', en:'Bresaola Pizza',
+    desc:'Mozzarella, bresaola, körsbärstomater, rucola, parmesan och citronolja.',
+    descEn:'Mozzarella, bresaola, cherry tomatoes, arugula, Parmesan and lemon oil.',
+    price:198, img:'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&q=80',
+    diet:[], allergens:['Gluten','Mjölk'],
+    ingredients:['Mozzarella','Bresaola','Körsbärstomater','Rucola','Parmesan','Citronolja']
+  },
+
+  // ---- DOLCI ----
+  {
+    id:'tiramisu', cat:'dolci',
+    sv:'Tiramisu', en:'Tiramisu',
+    desc:'Klassisk hemgjord tiramisu med espresso, mascarpone och kakao.',
+    descEn:'Classic homemade tiramisu with espresso, mascarpone and cocoa.',
+    price:75, img:'https://images.unsplash.com/photo-1571877227200-a41a467972cc?w=800&q=80',
+    diet:['vegetarian'], allergens:['Mjölk','Ägg','Gluten','Koffein'],
+    ingredients:['Mascarpone','Espresso','Savoiardi','Äggula','Kakao'], chef:true
+  },
+  {
+    id:'pannacotta', cat:'dolci',
+    sv:'Panna Cotta', en:'Panna Cotta',
+    desc:'Vanilj-panna cotta med säsongens bär och en droppe balsamico.',
+    descEn:'Vanilla panna cotta with seasonal berries and a drop of balsamic.',
+    price:85, img:'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80',
+    diet:['vegetarian','glutenfree'], allergens:['Mjölk'],
+    ingredients:['Grädde','Vanilj','Socker','Gelatin','Säsongens bär']
+  },
+  {
+    id:'affogato-dolci', cat:'dolci',
+    sv:'Affogato', en:'Affogato',
+    desc:'Vaniljglass med het espresso och amaretti-kross.',
+    descEn:'Vanilla ice cream with hot espresso and crushed amaretti.',
+    price:85, img:'https://images.unsplash.com/photo-1586195831800-a72b2d890c98?w=800&q=80',
+    diet:['vegetarian','glutenfree'], allergens:['Mjölk','Koffein'],
+    ingredients:['Vaniljglass','Espresso','Amaretti']
+  },
+  {
+    id:'semifreddo', cat:'dolci',
+    sv:'Semifreddo al Pistacchio', en:'Pistachio Semifreddo',
+    desc:'Fryst mandel- och pistacchio-semifreddo med chokladsås.',
+    descEn:'Frozen almond and pistachio semifreddo with chocolate sauce.',
+    price:95, img:'https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800&q=80',
+    diet:['vegetarian'], allergens:['Mjölk','Ägg','Nötter'],
+    ingredients:['Pistacchio','Mandel','Grädde','Chokladsås']
+  },
+];
+
+/* ---------- 2. DRINKS Data ---------- */
+const DRINKS = [
+  // COCKTAILS
+  {id:'select-spritz', cat:'dryck', sub:'cocktails', sv:'Select Spritz', en:'Select Spritz',
+    desc:'Prosecco, Aperitivo Select, soda, apelsin. En klassisk veneziansk aperitif.',
+    descEn:'Prosecco, Aperitivo Select, soda, orange. A classic Venetian aperitif.',
+    price:139, img:'https://images.unsplash.com/photo-1551538827-9c03df42e73b?w=800&q=80',
+    alcohol:true, abv:'~8%', allergens:['Sulfit'],
+    ingredients:['Prosecco','Aperitivo Select','Soda','Apelsin']},
+  {id:'aperol-spritz', cat:'dryck', sub:'cocktails', sv:'Aperol Spritz', en:'Aperol Spritz',
+    desc:'Prosecco, Aperol, soda och apelsin. Den mest ikoniska italienska aperitifen.',
+    descEn:'Prosecco, Aperol, soda and orange. The most iconic Italian aperitif.',
+    price:139, img:'https://images.unsplash.com/photo-1513671908460-708c9e0d3dd8?w=800&q=80',
+    alcohol:true, abv:'~8%', allergens:['Sulfit'],
+    ingredients:['Prosecco','Aperol','Soda','Apelsin']},
+  {id:'limoncello-spritz', cat:'dryck', sub:'cocktails', sv:'Limoncello Spritz', en:'Limoncello Spritz',
+    desc:'Prosecco, limoncello, soda och citron. Frisk och sommarlig.',
+    descEn:'Prosecco, limoncello, soda and lemon. Fresh and summery.',
+    price:139, img:'https://images.unsplash.com/photo-1587223962930-cb7f31384c19?w=800&q=80',
+    alcohol:true, abv:'~9%', allergens:['Sulfit'],
+    ingredients:['Prosecco','Limoncello','Soda','Citron']},
+  {id:'campari-soda', cat:'dryck', sub:'cocktails', sv:'Campari & Soda', en:'Campari & Soda',
+    desc:'Campari, soda och apelsin. Enkel och bitter på rätt sätt.',
+    descEn:'Campari, soda and orange. Simple and pleasantly bitter.',
+    price:89, img:'https://images.unsplash.com/photo-1587223075055-82e9a937ddff?w=800&q=80',
+    alcohol:true, abv:'~6%', allergens:['Sulfit'],
+    ingredients:['Campari','Soda','Apelsin']},
+  {id:'negroni', cat:'dryck', sub:'cocktails', sv:'Negroni', en:'Negroni',
+    desc:'Campari, Martini Rosso, gin och apelsin. Bitter, söt och perfekt balanserad.',
+    descEn:'Campari, Martini Rosso, gin and orange. Bitter, sweet and perfectly balanced.',
+    price:145, img:'https://images.unsplash.com/photo-1587223165374-8f12ff4b4a83?w=800&q=80',
+    alcohol:true, abv:'~24%', allergens:['Sulfit'], chef:true,
+    ingredients:['Campari','Martini Rosso','Gin','Apelsin']},
+  {id:'martini-cocktail', cat:'dryck', sub:'cocktails', sv:'Martini Cocktail', en:'Martini Cocktail',
+    desc:'Gin, Martini Extra Dry och oliv. Torr, elegant och tidlös.',
+    descEn:'Gin, Martini Extra Dry and olive. Dry, elegant and timeless.',
+    price:155, img:'https://images.unsplash.com/photo-1587223546737-4a6cbb7ddc98?w=800&q=80',
+    alcohol:true, abv:'~28%', allergens:['Sulfit'],
+    ingredients:['Gin','Martini Extra Dry','Oliv']},
+  {id:'marconi-gt', cat:'dryck', sub:'cocktails', sv:'Marconi Gin & Tonic', en:'Marconi Gin & Tonic',
+    desc:'Poli Marconi gin, tonic water och citron. Italiensk twist på klassikern.',
+    descEn:'Poli Marconi gin, tonic water and lemon. Italian twist on the classic.',
+    price:139, img:'https://images.unsplash.com/photo-1587223354517-2b0b9b0b0b0b?w=800&q=80',
+    alcohol:true, abv:'~12%', allergens:['Sulfit'],
+    ingredients:['Poli Marconi Gin','Tonic','Citron']},
+
+  // SPARKLING
+  {id:'vs-prosecco', cat:'dryck', sub:'sparkling', sv:'Villa Saporito Prosecco DOC Brut', en:'Villa Saporito Prosecco DOC Brut',
+    desc:'Glera från Friuli. Frisk, torr och med toner av grönäpple och päron.',
+    descEn:'Glera from Friuli. Fresh, dry with notes of green apple and pear.',
+    priceGlass:115, priceBottle:525, region:'Friuli', grape:'Glera',
+    img:'https://images.unsplash.com/photo-1592845247764-1b3c9b2a2bc2?w=800&q=80',
+    alcohol:true, abv:'11%', allergens:['Sulfit'],
+    ingredients:['Glera']},
+  {id:'asolo-rose', cat:'dryck', sub:'sparkling', sv:'Dal Bello Asolo Rosé Spumante Brut', en:'Dal Bello Asolo Rosé Spumante Brut',
+    desc:'Cabernet & Merlot från Veneto. Bärig rosé med fin mousse.',
+    descEn:'Cabernet & Merlot from Veneto. Berry-driven rosé with fine mousse.',
+    priceBottle:465, region:'Veneto', grape:'Cabernet, Merlot',
+    img:'https://images.unsplash.com/photo-1558618666-fcd2b8cd87d0?w=800&q=80',
+    alcohol:true, abv:'11.5%', allergens:['Sulfit'],
+    ingredients:['Cabernet','Merlot']},
+  {id:'asolo-celeber', cat:'dryck', sub:'sparkling', sv:'Dal Bello Asolo Prosecco Extra Brut Celeber BIO', en:'Dal Bello Asolo Prosecco Extra Brut Celeber BIO',
+    desc:'Ekologisk Glera från Veneto. Stram, mineraldriven och torr.',
+    descEn:'Organic Glera from Veneto. Taut, mineral-driven and dry.',
+    priceBottle:535, region:'Veneto', grape:'Glera',
+    img:'https://images.unsplash.com/photo-1549918141-72a3d3b5962d?w=800&q=80',
+    alcohol:true, abv:'11%', diet:['vegan','vegetarian'], allergens:['Sulfit'],
+    ingredients:['Glera']},
+  {id:'lambrusco', cat:'dryck', sub:'sparkling', sv:'Nero di Cio Lambrusco', en:'Nero di Cio Lambrusco',
+    desc:'Rött mousserande från Emilia-Romagna. Perfekt till charkuterier.',
+    descEn:'Sparkling red from Emilia-Romagna. Perfect with charcuterie.',
+    priceBottle:495, region:'Emilia-Romagna', grape:'Lambrusco blend',
+    img:'https://images.unsplash.com/photo-1566995590427-4cd20a5b2eb9?w=800&q=80',
+    alcohol:true, abv:'11%', allergens:['Sulfit'],
+    ingredients:['Lambrusco']},
+
+  // WHITE & ROSÉ
+  {id:'vs-bianco', cat:'dryck', sub:'white', sv:'Villa Saporito Bianco', en:'Villa Saporito Bianco',
+    desc:'Catarratto från Sicilien. Friskt och lätt med citrus och stenfrukt.',
+    descEn:'Catarratto from Sicily. Fresh and light with citrus and stone fruit.',
+    priceGlass:95, priceBottle:435, region:'Sicilien', grape:'Catarratto',
+    img:'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=800&q=80',
+    alcohol:true, abv:'12%', allergens:['Sulfit'],
+    ingredients:['Catarratto']},
+  {id:'assuli-grillo', cat:'dryck', sub:'white', sv:'Assuli Fiordiligi Grillo BIO DOC', en:'Assuli Fiordiligi Grillo BIO DOC',
+    desc:'Ekologisk Grillo från Sicilien. Medelfyllt med mandel och aprikos.',
+    descEn:'Organic Grillo from Sicily. Medium-bodied with almond and apricot.',
+    priceGlass:115, priceBottle:525, region:'Sicilien', grape:'Grillo',
+    img:'https://images.unsplash.com/photo-1584916201218-f474c40d1dd7?w=800&q=80',
+    alcohol:true, abv:'12.5%', diet:['vegan','vegetarian'], allergens:['Sulfit'],
+    ingredients:['Grillo']},
+  {id:'asolo-pg', cat:'dryck', sub:'white', sv:'Dal Bello Asolo Pinot Grigio DOC', en:'Dal Bello Asolo Pinot Grigio DOC',
+    desc:'Pinot Grigio från Veneto. Torrt, fruktigt och mångsidigt.',
+    descEn:'Pinot Grigio from Veneto. Dry, fruity and versatile.',
+    priceGlass:95, priceBottle:435, region:'Veneto', grape:'Pinot Grigio',
+    img:'https://images.unsplash.com/photo-1568213816046-0ee1c42bd559?w=800&q=80',
+    alcohol:true, abv:'12%', allergens:['Sulfit'],
+    ingredients:['Pinot Grigio']},
+  {id:'arneis', cat:'dryck', sub:'white', sv:'Fratelli Rabino Roero Arneis DOCG', en:'Fratelli Rabino Roero Arneis DOCG',
+    desc:'Arneis från Piemonte. Fylligt med päron, mandel och blommiga toner.',
+    descEn:'Arneis from Piedmont. Full-bodied with pear, almond and floral notes.',
+    priceGlass:115, priceBottle:525, region:'Piemonte', grape:'Arneis',
+    img:'https://images.unsplash.com/photo-1516594798947-e54cd5a16b0e?w=800&q=80',
+    alcohol:true, abv:'13%', allergens:['Sulfit'],
+    ingredients:['Arneis']},
+  {id:'soave', cat:'dryck', sub:'white', sv:'Tenuta Casaletti Soave DOC', en:'Tenuta Casaletti Soave DOC',
+    desc:'Garganega & Trebbiano från Veneto. Mandel, citrus och mineral.',
+    descEn:'Garganega & Trebbiano from Veneto. Almond, citrus and minerality.',
+    priceGlass:105, priceBottle:475, region:'Veneto', grape:'Garganega, Trebbiano',
+    img:'https://images.unsplash.com/photo-1566754331346-8ba179bc33e0?w=800&q=80',
+    alcohol:true, abv:'12%', allergens:['Sulfit'],
+    ingredients:['Garganega','Trebbiano']},
+  {id:'vermentino', cat:'dryck', sub:'white', sv:'Santadi Cala Silente Vermentino', en:'Santadi Cala Silente Vermentino',
+    desc:'Vermentino från Sardinien. Mineraliskt med citrus och örter.',
+    descEn:'Vermentino from Sardinia. Mineral with citrus and herbs.',
+    priceBottle:565, region:'Sardinien', grape:'Vermentino',
+    img:'https://images.unsplash.com/photo-1598306442928-4d90b39c6d75?w=800&q=80',
+    alcohol:true, abv:'13%', allergens:['Sulfit'],
+    ingredients:['Vermentino']},
+  {id:'langhe-bianco', cat:'dryck', sub:'white', sv:'Corsini Langhe Bianco DOC', en:'Corsini Langhe Bianco DOC',
+    desc:'Arneis & Chardonnay från Piemonte. Komplext och fatlagrat.',
+    descEn:'Arneis & Chardonnay from Piedmont. Complex and oak-aged.',
+    priceGlass:125, priceBottle:565, region:'Piemonte', grape:'Arneis, Chardonnay',
+    img:'https://images.unsplash.com/photo-1608912169617-56508a7b7a5f?w=800&q=80',
+    alcohol:true, abv:'13.5%', allergens:['Sulfit'], chef:true,
+    ingredients:['Arneis','Chardonnay']},
+  {id:'etna-bianco', cat:'dryck', sub:'white', sv:'Trainara Etna Bianco', en:'Trainara Etna Bianco',
+    desc:'Catarratto m.fl. från Etna, Sicilien. Vulkanisk mineralitet.',
+    descEn:'Catarratto blend from Etna, Sicily. Volcanic minerality.',
+    priceBottle:710, region:'Sicilien', grape:'Catarratto blend',
+    img:'https://images.unsplash.com/photo-1625865635738-9002c1b8b61a?w=800&q=80',
+    alcohol:true, abv:'13%', allergens:['Sulfit'],
+    ingredients:['Catarratto']},
+  {id:'pratello-rosato', cat:'dryck', sub:'white', sv:'Pratello Opera Rosato', en:'Pratello Opera Rosato',
+    desc:'Sangiovese & Barbera från Lombardiet. Frisk rosé med röda bär.',
+    descEn:'Sangiovese & Barbera from Lombardy. Fresh rosé with red berries.',
+    priceGlass:125, priceBottle:565, region:'Lombardiet', grape:'Sangiovese, Barbera',
+    img:'https://images.unsplash.com/photo-1558002038-105590a5c085?w=800&q=80',
+    alcohol:true, abv:'12.5%', allergens:['Sulfit'],
+    ingredients:['Sangiovese','Barbera']},
+
+  // RED
+  {id:'vs-rosso', cat:'dryck', sub:'red', sv:'Villa Saporito Rosso', en:'Villa Saporito Rosso',
+    desc:'Nero d\'Avola från Sicilien. Mörka bär, mjuk tannin.',
+    descEn:'Nero d\'Avola from Sicily. Dark berries, soft tannin.',
+    priceGlass:95, priceBottle:435, region:'Sicilien', grape:'Nero d\'Avola',
+    img:'https://images.unsplash.com/photo-1506377247377-652045abc0f0?w=800&q=80',
+    alcohol:true, abv:'13%', allergens:['Sulfit'],
+    ingredients:['Nero d\'Avola']},
+  {id:'assuli-syrah', cat:'dryck', sub:'red', sv:'Assuli Ruggiero BIO DOC Syrah', en:'Assuli Ruggiero BIO DOC Syrah',
+    desc:'Ekologisk Syrah från Sicilien. Kryddig med plommon och peppar.',
+    descEn:'Organic Syrah from Sicily. Spicy with plum and pepper.',
+    priceBottle:525, region:'Sicilien', grape:'Syrah',
+    img:'https://images.unsplash.com/photo-1584916201218-f474c40d1dd7?w=800&q=80',
+    alcohol:true, abv:'13.5%', diet:['vegan','vegetarian'], allergens:['Sulfit'],
+    ingredients:['Syrah']},
+  {id:'asolo-merlot', cat:'dryck', sub:'red', sv:'Dal Bello Asolo Merlot DOC', en:'Dal Bello Asolo Merlot DOC',
+    desc:'Merlot från Veneto. Mjukt och bärigt, perfekt till pizza.',
+    descEn:'Merlot from Veneto. Soft and berry-driven, perfect with pizza.',
+    priceGlass:95, priceBottle:435, region:'Veneto', grape:'Merlot',
+    img:'https://images.unsplash.com/photo-1474722883778-792e7990302f?w=800&q=80',
+    alcohol:true, abv:'13%', allergens:['Sulfit'],
+    ingredients:['Merlot']},
+  {id:'grotta-rossa', cat:'dryck', sub:'red', sv:'Santadi Grotta Rossa DOC Carignano', en:'Santadi Grotta Rossa DOC Carignano',
+    desc:'Carignano från Sardinien. Kraftfullt med kryddiga toner.',
+    descEn:'Carignano from Sardinia. Powerful with spicy notes.',
+    priceGlass:115, priceBottle:525, region:'Sardinien', grape:'Carignano',
+    img:'https://images.unsplash.com/photo-1553361371-9b22f74b9c97?w=800&q=80',
+    alcohol:true, abv:'13.5%', allergens:['Sulfit'],
+    ingredients:['Carignano']},
+  {id:'valpolicella', cat:'dryck', sub:'red', sv:'Tenuta Casaletti Valpolicella DOC', en:'Tenuta Casaletti Valpolicella DOC',
+    desc:'Corvina, Corvinone, Rondinella från Veneto. Körsbär och kryddor.',
+    descEn:'Corvina, Corvinone, Rondinella from Veneto. Cherry and spices.',
+    priceGlass:105, priceBottle:475, region:'Veneto', grape:'Corvina, Corvinone, Rondinella',
+    img:'https://images.unsplash.com/photo-1600429534608-8b8f0b5d1cd3?w=800&q=80',
+    alcohol:true, abv:'12.5%', allergens:['Sulfit'],
+    ingredients:['Corvina','Corvinone','Rondinella']},
+  {id:'nebbiolo', cat:'dryck', sub:'red', sv:'Fratelli Rabino Roero DOCG Nebbiolo', en:'Fratelli Rabino Roero DOCG Nebbiolo',
+    desc:'Nebbiolo från Piemonte. Ros, tjära och elegans i överflöd.',
+    descEn:'Nebbiolo from Piedmont. Rose, tar and abundant elegance.',
+    priceGlass:125, priceBottle:565, region:'Piemonte', grape:'Nebbiolo',
+    img:'https://images.unsplash.com/photo-1614313511387-1436a4480ebb?w=800&q=80',
+    alcohol:true, abv:'14%', allergens:['Sulfit'], chef:true,
+    ingredients:['Nebbiolo']},
+  {id:'noras', cat:'dryck', sub:'red', sv:'Santadi Noras DOC Cannonau', en:'Santadi Noras DOC Cannonau',
+    desc:'Cannonau (Grenache) från Sardinien. Fylligt med mogna röda bär.',
+    descEn:'Cannonau (Grenache) from Sardinia. Full-bodied with ripe red berries.',
+    priceGlass:135, priceBottle:650, region:'Sardinien', grape:'Cannonau',
+    img:'https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=800&q=80',
+    alcohol:true, abv:'14%', allergens:['Sulfit'],
+    ingredients:['Cannonau']},
+  {id:'chianti-ris', cat:'dryck', sub:'red', sv:'Campopazzo Chianti Classico Riserva', en:'Campopazzo Chianti Classico Riserva',
+    desc:'Sangiovese från Toscana. Klassiker med körsbär och tobak.',
+    descEn:'Sangiovese from Tuscany. Classic with cherry and tobacco.',
+    priceBottle:625, region:'Toscana', grape:'Sangiovese',
+    img:'https://images.unsplash.com/photo-1560152829-e8a17e9a5f1f?w=800&q=80',
+    alcohol:true, abv:'13.5%', allergens:['Sulfit'],
+    ingredients:['Sangiovese']},
+  {id:'amarone', cat:'dryck', sub:'red', sv:'Cantina del Museo Amarone DOCG', en:'Cantina del Museo Amarone DOCG',
+    desc:'Corvina m.fl. från Veneto. Kraftfullt och intensivt med torkad frukt.',
+    descEn:'Corvina blend from Veneto. Powerful and intense with dried fruit.',
+    priceBottle:950, region:'Veneto', grape:'Corvina blend',
+    img:'https://images.unsplash.com/photo-1569701811627-4927d2d74c39?w=800&q=80',
+    alcohol:true, abv:'15%', allergens:['Sulfit'], chef:true,
+    ingredients:['Corvina','Corvinone','Rondinella']},
+  {id:'terre-brune', cat:'dryck', sub:'red', sv:'Santadi Terre Brune Superiore', en:'Santadi Terre Brune Superiore',
+    desc:'Carignano från Sardinien. En av Italiens stora viner. Komplext och långt.',
+    descEn:'Carignano from Sardinia. One of Italy\'s great wines. Complex and long.',
+    priceBottle:1285, region:'Sardinien', grape:'Carignano',
+    img:'https://images.unsplash.com/photo-1516594798947-e54cd5a16b0e?w=800&q=80',
+    alcohol:true, abv:'14.5%', allergens:['Sulfit'],
+    ingredients:['Carignano']},
+  {id:'barolo', cat:'dryck', sub:'red', sv:'Corsini Barolo Monforte d\'Alba', en:'Corsini Barolo Monforte d\'Alba',
+    desc:'Nebbiolo från Piemonte. Kungen av viner. Ros, tjära, struktur.',
+    descEn:'Nebbiolo from Piedmont. The king of wines. Rose, tar, structure.',
+    priceBottle:950, region:'Piemonte', grape:'Nebbiolo',
+    img:'https://images.unsplash.com/photo-1553361371-9b22f74b9c97?w=800&q=80',
+    alcohol:true, abv:'14.5%', allergens:['Sulfit'],
+    ingredients:['Nebbiolo']},
+  {id:'barbaresco', cat:'dryck', sub:'red', sv:'Francone Barbaresco Gallina', en:'Francone Barbaresco Gallina',
+    desc:'Nebbiolo från Piemonte. Drottningen av Piemonte-viner.',
+    descEn:'Nebbiolo from Piedmont. The queen of Piedmont wines.',
+    priceBottle:995, region:'Piemonte', grape:'Nebbiolo',
+    img:'https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=800&q=80',
+    alcohol:true, abv:'14%', allergens:['Sulfit'],
+    ingredients:['Nebbiolo']},
+  {id:'barbaresco-ris', cat:'dryck', sub:'red', sv:'Francone Barbaresco Riserva', en:'Francone Barbaresco Riserva',
+    desc:'Lagrad Nebbiolo från Piemonte. Djupt och komplext.',
+    descEn:'Aged Nebbiolo from Piedmont. Deep and complex.',
+    priceBottle:1150, region:'Piemonte', grape:'Nebbiolo',
+    img:'https://images.unsplash.com/photo-1614313511387-1436a4480ebb?w=800&q=80',
+    alcohol:true, abv:'14%', allergens:['Sulfit'], chef:true,
+    ingredients:['Nebbiolo']},
+
+  // BEER & CIDER
+  {id:'menabrea-20', cat:'dryck', sub:'beer', sv:'Birra Menabrea 20 cl', en:'Birra Menabrea 20 cl',
+    desc:'Italienskt fatöl från Biella. Lätt, friskt och klassiskt.',
+    descEn:'Italian draft beer from Biella. Light, fresh and classic.',
+    price:55, img:'https://images.unsplash.com/photo-1608270529627-f8d659b7c6d5?w=800&q=80',
+    alcohol:true, abv:'4.8%', allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'20 cl'},
+  {id:'menabrea-40', cat:'dryck', sub:'beer', sv:'Birra Menabrea 40 cl', en:'Birra Menabrea 40 cl',
+    desc:'Italienskt fatöl från Biella. Lätt, friskt och klassiskt.',
+    descEn:'Italian draft beer from Biella. Light, fresh and classic.',
+    price:95, img:'https://images.unsplash.com/photo-1608270529627-f8d659b7c6d5?w=800&q=80',
+    alcohol:true, abv:'4.8%', allergens:['Gluten'], chef:true,
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'40 cl'},
+  {id:'hogakusten', cat:'dryck', sub:'beer', sv:'Höga Kusten 50 cl', en:'Höga Kusten 50 cl',
+    desc:'Lokalt öl från Höga Kusten-bryggeriet.',
+    descEn:'Local beer from the Höga Kusten brewery.',
+    price:90, img:'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80',
+    alcohol:true, abv:'5.3%', allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'50 cl'},
+  {id:'1664', cat:'dryck', sub:'beer', sv:'1664 Blanc 33 cl', en:'1664 Blanc 33 cl',
+    desc:'Fransk veteöl med citrus och koriander.',
+    descEn:'French wheat beer with citrus and coriander.',
+    price:75, img:'https://images.unsplash.com/photo-1571767472058-3d02a7b72b42?w=800&q=80',
+    alcohol:true, abv:'5%', allergens:['Gluten'],
+    ingredients:['Vetemalt','Kornmalt','Humle','Koriander'], size:'33 cl'},
+  {id:'rickys', cat:'dryck', sub:'beer', sv:'Rickys IPA 50 cl', en:'Rickys IPA 50 cl',
+    desc:'Humlig IPA med tropiska toner.',
+    descEn:'Hoppy IPA with tropical notes.',
+    price:90, img:'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80',
+    alcohol:true, abv:'6.5%', allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'50 cl'},
+  {id:'lattol', cat:'dryck', sub:'beer', sv:'Grängesberg Lättöl 2,1%', en:'Grängesberg Light Beer 2.1%',
+    desc:'Lättöl med klassisk smak.',
+    descEn:'Light beer with classic taste.',
+    price:35, img:'https://images.unsplash.com/photo-1608270529627-f8d659b7c6d5?w=800&q=80',
+    alcohol:true, abv:'2.1%', allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'33 cl'},
+  {id:'menabrea-bionda', cat:'dryck', sub:'beer', sv:'Menabrea Bionda 66 cl', en:'Menabrea Bionda 66 cl',
+    desc:'Klassisk italiensk pilsner på storflaska.',
+    descEn:'Classic Italian pilsner in large bottle.',
+    price:125, img:'https://images.unsplash.com/photo-1600774792953-4ddc48d7c9a1?w=800&q=80',
+    alcohol:true, abv:'4.8%', allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'66 cl'},
+  {id:'volpina', cat:'dryck', sub:'beer', sv:'Volpina Red Ale 50 cl', en:'Volpina Red Ale 50 cl',
+    desc:'Italiensk röd ale med karamelltoner.',
+    descEn:'Italian red ale with caramel notes.',
+    price:125, img:'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80',
+    alcohol:true, abv:'5.8%', allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'50 cl'},
+  {id:'briska', cat:'dryck', sub:'beer', sv:'Briska Päroncider 33 cl', en:'Briska Pear Cider 33 cl',
+    desc:'Söt päroncider, uppfriskande.',
+    descEn:'Sweet pear cider, refreshing.',
+    price:75, img:'https://images.unsplash.com/photo-1527829183346-fdac4bc96b66?w=800&q=80',
+    alcohol:true, abv:'4.5%', allergens:['Sulfit'],
+    ingredients:['Päron','Jäst'], size:'33 cl'},
+
+  // NON-ALCOHOLIC
+  {id:'mousse-nonal', cat:'dryck', sub:'nonalc', sv:'Mousserande vin (alkoholfritt)', en:'Sparkling wine (non-alcoholic)',
+    desc:'Alkoholfritt mousserande vin, perfekt som aperitif.',
+    descEn:'Non-alcoholic sparkling wine, perfect as aperitif.',
+    price:69, img:'https://images.unsplash.com/photo-1592845247764-1b3c9b2a2bc2?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'],
+    ingredients:['Alkoholfritt vin']},
+  {id:'menabrea-zero', cat:'dryck', sub:'nonalc', sv:'Menabrea 0.0% 33 cl', en:'Menabrea 0.0% 33 cl',
+    desc:'Alkoholfri italiensk öl med samma karaktär.',
+    descEn:'Non-alcoholic Italian beer with the same character.',
+    price:45, img:'https://images.unsplash.com/photo-1608270529627-f8d659b7c6d5?w=800&q=80',
+    alcohol:false, allergens:['Gluten'],
+    ingredients:['Kornmalt','Humle','Vatten','Jäst'], size:'33 cl'},
+  {id:'cola', cat:'dryck', sub:'nonalc', sv:'Coca Cola / Zero 33 cl', en:'Coca Cola / Zero 33 cl',
+    desc:'Klassisk cola eller sockerfri version.',
+    descEn:'Classic cola or sugar-free version.',
+    price:35, img:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'],
+    ingredients:['Kolsyrat vatten','Socker','Koffein'], size:'33 cl'},
+  {id:'sprite', cat:'dryck', sub:'nonalc', sv:'Sprite 33 cl', en:'Sprite 33 cl',
+    desc:'Citron/lime-läsk.',
+    descEn:'Lemon/lime soda.',
+    price:35, img:'https://images.unsplash.com/photo-1629203851122-3726cf3d6475?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'],
+    ingredients:['Kolsyrat vatten','Socker','Citron'], size:'33 cl'},
+  {id:'fanta', cat:'dryck', sub:'nonalc', sv:'Fanta / Lemon 33 cl', en:'Fanta / Lemon 33 cl',
+    desc:'Apelsin- eller citronläsk.',
+    descEn:'Orange or lemon soda.',
+    price:35, img:'https://images.unsplash.com/photo-1581098365948-9c0a5ddf2ee0?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'],
+    ingredients:['Kolsyrat vatten','Socker'], size:'33 cl'},
+  {id:'trocadero', cat:'dryck', sub:'nonalc', sv:'Trocadero 33 cl', en:'Trocadero 33 cl',
+    desc:'Klassisk svensk läsk med äpple & päron.',
+    descEn:'Classic Swedish soda with apple & pear.',
+    price:29, img:'https://images.unsplash.com/photo-1581098365948-9c0a5ddf2ee0?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'],
+    ingredients:['Kolsyrat vatten','Äpple','Päron'], size:'33 cl'},
+  {id:'loka', cat:'dryck', sub:'nonalc', sv:'Loka Naturell / Citron', en:'Loka Still / Lemon',
+    desc:'Kolsyrat mineralvatten, naturell eller med citron.',
+    descEn:'Sparkling mineral water, still or with lemon.',
+    price:29, img:'https://images.unsplash.com/photo-1523472822433-771390b5d70b?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'],
+    ingredients:['Kolsyrat vatten']},
+
+  // COFFEE
+  {id:'svart', cat:'dryck', sub:'coffee', sv:'Svart kaffe', en:'Black coffee',
+    desc:'Klassiskt italienskt bryggkaffe.',
+    descEn:'Classic Italian brewed coffee.',
+    price:29, img:'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'], allergens:['Koffein'],
+    ingredients:['Kaffe']},
+  {id:'espresso', cat:'dryck', sub:'coffee', sv:'Espresso', en:'Espresso',
+    desc:'Enkel espresso, bryggd på italienskt vis.',
+    descEn:'Single espresso, Italian-style.',
+    price:32, img:'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'], allergens:['Koffein'],
+    ingredients:['Kaffe']},
+  {id:'dubbel-espresso', cat:'dryck', sub:'coffee', sv:'Dubbel Espresso', en:'Double Espresso',
+    desc:'Dubbel espresso för den som behöver mer.',
+    descEn:'Double espresso for those who need more.',
+    price:42, img:'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&q=80',
+    alcohol:false, diet:['vegan','vegetarian','glutenfree'], allergens:['Koffein'],
+    ingredients:['Kaffe']},
+  {id:'cappuccino', cat:'dryck', sub:'coffee', sv:'Cappuccino', en:'Cappuccino',
+    desc:'Espresso med ångad mjölk och skum.',
+    descEn:'Espresso with steamed milk and foam.',
+    price:35, img:'https://images.unsplash.com/photo-1572442388796-116b811c3d7c?w=800&q=80',
+    alcohol:false, diet:['vegetarian'], allergens:['Mjölk','Koffein'],
+    ingredients:['Espresso','Mjölk']},
+  {id:'latte', cat:'dryck', sub:'coffee', sv:'Café Latte', en:'Café Latte',
+    desc:'Espresso med mycket ångad mjölk.',
+    descEn:'Espresso with lots of steamed milk.',
+    price:42, img:'https://images.unsplash.com/photo-1541167760496-1628bd597390?w=800&q=80',
+    alcohol:false, diet:['vegetarian'], allergens:['Mjölk','Koffein'],
+    ingredients:['Espresso','Mjölk']},
+  {id:'macchiato', cat:'dryck', sub:'coffee', sv:'Macchiato', en:'Macchiato',
+    desc:'Espresso "fläckad" med lite mjölkskum.',
+    descEn:'Espresso "stained" with a little milk foam.',
+    price:35, img:'https://images.unsplash.com/photo-1572442388796-116b811c3d7c?w=800&q=80',
+    alcohol:false, diet:['vegetarian'], allergens:['Mjölk','Koffein'],
+    ingredients:['Espresso','Mjölk']},
+  {id:'affogato', cat:'dryck', sub:'coffee', sv:'Affogato', en:'Affogato',
+    desc:'Vaniljglass med het espresso. En dessert i sig.',
+    descEn:'Vanilla ice cream with hot espresso. A dessert in itself.',
+    price:75, img:'https://images.unsplash.com/photo-1586195831800-a72b2d890c98?w=800&q=80',
+    alcohol:false, diet:['vegetarian','glutenfree'], allergens:['Mjölk','Koffein'], chef:true,
+    ingredients:['Vaniljglass','Espresso']},
+  {id:'irish', cat:'dryck', sub:'coffee', sv:'Irish Coffee', en:'Irish Coffee',
+    desc:'Kaffe, irländsk whiskey, socker och grädde.',
+    descEn:'Coffee, Irish whiskey, sugar and cream.',
+    price:145, img:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&q=80',
+    alcohol:true, abv:'~10%', allergens:['Mjölk','Koffein'],
+    ingredients:['Kaffe','Whiskey','Grädde','Socker']},
+  {id:'karlsson', cat:'dryck', sub:'coffee', sv:'Kaffe Karlsson', en:'Kaffe Karlsson',
+    desc:'Husets egen kaffecocktail med svensk touch.',
+    descEn:'House coffee cocktail with Swedish touch.',
+    price:145, img:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&q=80',
+    alcohol:true, abv:'~12%', allergens:['Mjölk','Koffein'],
+    ingredients:['Kaffe','Sprit','Grädde']},
+  {id:'espresso-martini', cat:'dryck', sub:'coffee', sv:'Espresso Martini', en:'Espresso Martini',
+    desc:'Vodka, kaffelikör och nybryggd espresso. Skummad till perfektion.',
+    descEn:'Vodka, coffee liqueur and freshly brewed espresso. Shaken to perfection.',
+    price:145, img:'https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?w=800&q=80',
+    alcohol:true, abv:'~15%', allergens:['Koffein'], chef:true,
+    ingredients:['Vodka','Kaffelikör','Espresso']},
+
+  // DESSERT WINE
+  {id:'florio', cat:'dryck', sub:'dessert', sv:'Florio Vecchioflorio', en:'Florio Vecchioflorio',
+    desc:'Marsala från Sicilien. Grillo & Catarratto. Torkad frukt och karamell.',
+    descEn:'Marsala from Sicily. Grillo & Catarratto. Dried fruit and caramel.',
+    priceGlass:69, region:'Sicilien', grape:'Grillo, Catarratto',
+    img:'https://images.unsplash.com/photo-1566754331346-8ba179bc33e0?w=800&q=80',
+    alcohol:true, abv:'17%', allergens:['Sulfit'],
+    ingredients:['Grillo','Catarratto']},
+  {id:'latina-passito', cat:'dryck', sub:'dessert', sv:'Santadi Latina Passito', en:'Santadi Latina Passito',
+    desc:'Passito från Sardinien. Söt med torkad frukt och honung.',
+    descEn:'Passito from Sardinia. Sweet with dried fruit and honey.',
+    priceGlass:149, region:'Sardinien', grape:'Local blend',
+    img:'https://images.unsplash.com/photo-1566995590427-4cd2bc3d2a4a?w=800&q=80',
+    alcohol:true, abv:'14%', allergens:['Sulfit'],
+    ingredients:['Lokala druvor']},
+  {id:'grillo-passito', cat:'dryck', sub:'dessert', sv:'Assuli Grillo Passito DOC', en:'Assuli Grillo Passito DOC',
+    desc:'Passito-Grillo från Sicilien. Aprikos, honung och mandel.',
+    descEn:'Passito Grillo from Sicily. Apricot, honey and almond.',
+    priceGlass:149, region:'Sicilien', grape:'Grillo',
+    img:'https://images.unsplash.com/photo-1566995590427-4cd2bc3d2a4a?w=800&q=80',
+    alcohol:true, abv:'13.5%', allergens:['Sulfit'], chef:true,
+    ingredients:['Grillo']},
+  {id:'recioto', cat:'dryck', sub:'dessert', sv:'Villa Canestrari Recioto della Valpolicella', en:'Villa Canestrari Recioto della Valpolicella',
+    desc:'Sött rödvin från Veneto. Körsbärskompott, choklad och kryddor.',
+    descEn:'Sweet red wine from Veneto. Cherry compote, chocolate and spices.',
+    priceGlass:159, region:'Veneto', grape:'Corvina, Corvinone',
+    img:'https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=800&q=80',
+    alcohol:true, abv:'14%', allergens:['Sulfit'],
+    ingredients:['Corvina','Corvinone']}
+];
+
+const MENU = [...FOOD, ...DRINKS];
+
+/* NY: Villa Saporito fryspizza (klickbara, öppnar samma modal). OBS: verifiera ingredienser/allergener mot förpackningarna. */
+const VILLA = [
+  {id:'villa-margherita', cat:'villa', sv:'Margherita', en:'Margherita', price:85, diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+   desc:'Stenugnsbakad fryspizza med tomatsås, mozzarella och basilika.', descEn:'Stone-baked frozen pizza with tomato sauce, mozzarella and basil.',
+   ingredients:['Tomatsås','Mozzarella','Basilika'], img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80'},
+  {id:'villa-quattro', cat:'villa', sv:'Quattro Formaggi', en:'Four Cheese', price:95, diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+   desc:'Stenugnsbakad fryspizza med fyra sorters ost.', descEn:'Stone-baked frozen pizza with four cheeses.',
+   ingredients:['Mozzarella','Fontal','Gorgonzola','Parmesan'], img:'https://images.unsplash.com/photo-1548369937-47519962c11a?w=800&q=80'},
+  {id:'villa-calabrese', cat:'villa', sv:'Calabrese', en:'Calabrese', price:100, diet:['spicy'], allergens:['Gluten','Mjölk'],
+   desc:'Stenugnsbakad fryspizza med tomatsås, mozzarella och kryddig salami.', descEn:'Stone-baked frozen pizza with tomato sauce, mozzarella and spicy salami.',
+   ingredients:['Tomatsås','Mozzarella','Kryddig salami'], img:'https://images.unsplash.com/photo-1628840042630-8a3a9d89d9fc?w=800&q=80'},
+  {id:'villa-cotto', cat:'villa', sv:'Cotto', en:'Cotto', price:90, diet:[], allergens:['Gluten','Mjölk'],
+   desc:'Stenugnsbakad fryspizza med tomatsås, mozzarella och kokt skinka.', descEn:'Stone-baked frozen pizza with tomato sauce, mozzarella and cooked ham.',
+   ingredients:['Tomatsås','Mozzarella','Kokt skinka'], img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80'},
+  {id:'villa-ortolana', cat:'villa', sv:'Ortolana', en:'Ortolana (Veggie)', price:95, diet:['vegetarian'], allergens:['Gluten','Mjölk'],
+   desc:'Stenugnsbakad fryspizza med grönsaker och mozzarella.', descEn:'Stone-baked frozen pizza with vegetables and mozzarella.',
+   ingredients:['Tomatsås','Mozzarella','Zucchini','Paprika','Aubergine'], img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80'},
+  {id:'villa-deg', cat:'villa', sv:'Pizzadeg (270 g)', en:'Pizza dough (270 g)', price:43, diet:[], allergens:['Gluten'],
+   desc:'Färdig pizzadeg att grädda hemma.', descEn:'Ready-made pizza dough to bake at home.',
+   ingredients:['Pizzadeg'], img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80'},
+];
+const ALL_ITEMS = [...MENU, ...VILLA];
+const getItem = id => ALL_ITEMS.find(m=>m.id===id);
+
+/* FIX: bildhantering. Flera drink-URL:er hade påhittade ID:n och dubbletter.
+   Drycker får nu en bild per typ (poolen nedan). Allt som ändå inte laddas
+   fångas av error-lyssnaren längre ned (kategori-bild -> SVG-placeholder). */
+const U = id => `https://images.unsplash.com/photo-${id}?w=800&q=80`;
+const IMG_POOL = {
+  cocktails:['1551538827-9c03df42e73b','1470337458703-46ad1756a187','1514362545857-3bc16c4c7d1b','1556679343-c7306c1976bc'],
+  sparkling:['1547595628-c61a29f496f0','1510812431401-41d2bd2722f3'],
+  white:['1510812431401-41d2bd2722f3','1547595628-c61a29f496f0'],
+  red:['1506377247377-2a5b3b417ebb','1474722883778-792e7990302f','1547595628-c61a29f496f0'],
+  beer:['1608270586620-248524c67de9','1535958636474-b021ee887b13'],
+  nonalc:['1554866585-cd94860890b7','1551024709-8f23befc6f87'],
+  coffee:['1495474472287-4d71bcdd2085','1514432324607-a09d9b4aefdd','1509042239860-f550ce710b93','1572442388796-116b811c3d7c'],
+  dessert:['1510812431401-41d2bd2722f3','1547595628-c61a29f496f0'],
+  antipasti:['1546069901-ba9599a7e63c','1504674900247-0877df9cc836'],
+  pasta:['1551183053-bf91a1792441','1621996346565-e3dbc646d9a9','1473093295043-cdd812d0e601'],
+  pesce:['1467003909585-2f8a72713616','1414235077428-338989a2e8c0'],
+  pizza:['1565299624946-b28f40a0ae38','1574071318508-1cdbab80d002','1513104890138-7c749659a591'],
+  dolci:['1571877227200-a41a467972cc','1551024601-bec78aea704b'],
+  villa:['1565299624946-b28f40a0ae38']
+};
+const IMG_OVERRIDE = {'espresso-martini':'1514361892635-6b07e31e75f9','espresso':'1510591509098-f4fdc6d0ff04','cappuccino':'1572442388796-116b811c3d7c','latte':'1541167760496-1628bd597390'};
+const poolFor = it => IMG_POOL[it.sub] || IMG_POOL[it.cat] || IMG_POOL.pizza;
+(function fixImages(){
+  const counters = {};
+  DRINKS.forEach(d=>{
+    const pool = poolFor(d); counters[d.sub] = (counters[d.sub]||0);
+    d.img = U(IMG_OVERRIDE[d.id] || pool[counters[d.sub]++ % pool.length]);
+  });
+  // Mat: byt ut de ID:n som ser påhittade ut
+  const suspicious = ['1625938145314-1a2b0e5c2b6b','1625943553852-781c6dd46faa','1595708609504-5f5c0ff0a6d3','1625937286074-9ca5d43d080f'];
+  FOOD.forEach(f=>{
+    if(suspicious.some(s=>f.img.includes(s))){ f.img = U(poolFor(f)[0]); }
+  });
+})();
+
+/* NY: lunch per veckodag (0=sön … 6=lör). Ersätt med era riktiga rätter. */
+const LUNCH = {
+  2:{ref:'cavati-norma', sv:'Cavati alla Norma', en:'Cavati alla Norma', desc:'Hemgjord pasta med tomatsås, aubergine, basilika och saltad ricotta.', descEn:'Homemade pasta with tomato sauce, aubergine, basil and salted ricotta.'},
+  3:{ref:'salmone', sv:'Salmone', en:'Pan-seared Salmon', desc:'Laxfilé med potatis, spenat, granatäpple och balsamicodressing.', descEn:'Salmon fillet with potato, spinach, pomegranate and balsamic dressing.'},
+  4:{ref:'bresaola', sv:'Bresaola', en:'Bresaola', desc:'Lufttorkat nötkött med rucola, valnötter, Grana Padano och citronolja.', descEn:'Air-dried beef with arugula, walnuts, Grana Padano and lemon oil.'},
+  5:{ref:'margherita', sv:'Dagens pizza', en:"Today's pizza", desc:'Vedugnsbakad pizza — fråga personalen vilken som gäller idag.', descEn:'Wood-fired pizza — ask staff which one is on today.'}
+};
+const LUNCH_PRICE = 145;
+
+/* ---------- 3. Translations ---------- */
+const I18N = {
+  sv:{
+    tagline:'Helt enkelt italienskt', openNow:'Öppet nu', closed:'Stängt',
+    limitedTime:'Begränsad tid', chefPick:'Kockens val',
+    specialTitle:'Dagens lunch — 145 kr',
+    specialDesc:'Bresaola, Cavati alla Norma, Salmone eller dagens pizza. Bordsvatten, kaffe & kaka ingår.',
+    seeTodays:'Se dagens meny →',
+    all:'Alla', antipasti:'Antipasti', pesce:'Pesce', dolci:'Dolci', dryck:'Dryck', villa:'Villa Saporito',
+    vegetarian:'Vegetariskt', vegan:'Veganskt', glutenfree:'Glutenfritt',
+    spicy:'Starkt', chefPicks:'Kockens val', clearAll:'Rensa alla',
+    alcohol:'Med alkohol', nonalc:'Alkoholfritt',
+    antipastiSub:'Italienska förrätter', pastaSub:'Hemgjord pasta från grunden',
+    pesceSub:'Fisk & skaldjur', pizzaSub:'Surdeg & vedugnsbakad',
+    dolciSub:'Desserter', dryckSub:'Italienska viner, öl, cocktails & kaffe — Salute!',
+    villaDesc:'Fyll frysen med riktigt god stenugnsbakad pizza, perfekt att ha hemma när du vill ha något snabbt, enkelt och riktigt smakfullt. Våra pizzor finns i flera omtyckta varianter.',
+    addToOrder:'Lägg till i beställning', addedToOrder:'Tillagd i beställning',
+    ingredients:'Ingredienser', allergens:'Allergener', nutrition:'Näringsvärde',
+    region:'Region', grape:'Druva', size:'Storlek',
+    customize:'Anpassa', spiceLevel:'Styrka', mild:'Mild', medium:'Medium', hot:'Het',
+    addOns:'Tillägg', addExtraCheese:'+ extra ost', addSideSalad:'+ sidosallad',
+    hours:'Öppettider', hoursNote:'* Köket stänger, restaurangen öppen en stund till.',
+    footerAbout:'Modern svensk-italiensk restaurang i hjärtat av Örnsköldsvik. Vi lagar mat från grunden med kärlek till både det italienska och det nordiska.',
+    shareMenu:'Dela & ladda ner', downloadPdf:'Ladda ner meny (PDF)', scanQr:'Skanna QR',
+    lastUpdated:'Senast uppdaterad', showing:'visar',
+    ageGateTitle:'Åldersgräns 20 år', ageGateText:'För att beställa alkoholhaltiga drycker måste du vara minst 20 år.',
+    ageYes:'Ja, jag är 20+', ageNo:'Nej',
+    drinkAll:'Alla drycker', drinkCocktails:'Cocktails & Aperitif', drinkSparkling:'Mousserande',
+    drinkWhite:'Vitt & Rosé', drinkRed:'Rött', drinkBeer:'Öl & Cider',
+    drinkNonAlc:'Alkoholfritt', drinkCoffee:'Kaffe', drinkDessert:'Dessertvin',
+    glass:'Glas', bottle:'Flaska', perGlass:'/glas', perBottle:'/flaska',
+    /* NY */
+    lunch:'Lunch', lunchTitle:'Dagens lunch', lunchSub:'Tisdag–fredag 11–14', lunchToday:'Idag',
+    lunchIncl:'145 kr · inkl. bordsvatten, kaffe & kaka',
+    lunchClosed:'Ingen lunch serveras idag — välkommen till à la carte.',
+    downloadLunch:'Ladda ner lunchmeny (PDF)', qrHint:'Skanna för att öppna menyn på mobilen',
+    pdfBusy:'Genererar PDF…', pdfError:'Kunde inte skapa PDF. Försök igen.', added:'tillagd',
+    cartLabel:'Beställning', dishes:'rätter',
+    villaBuy:'Fråga i restaurangen eller ring oss för att beställa och hämta.', villaOrder:'Beställ: 0660-22 21 66',
+    pdfTitle:'Meny', pdfLunchTitle:'Lunchmeny', days:['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag']
+  },
+  en:{
+    tagline:'Simply Italian', openNow:'Open now', closed:'Closed',
+    limitedTime:'Limited time', chefPick:"Chef's pick",
+    specialTitle:"Today's lunch — 145 SEK",
+    specialDesc:'Bresaola, Cavati alla Norma, Salmone or today\'s pizza. Water, coffee & cookie included.',
+    seeTodays:"See today's menu →",
+    all:'All', antipasti:'Antipasti', pesce:'Seafood', dolci:'Desserts', dryck:'Drinks', villa:'Villa Saporito',
+    vegetarian:'Vegetarian', vegan:'Vegan', glutenfree:'Gluten-Free',
+    spicy:'Spicy', chefPicks:"Chef's Picks", clearAll:'Clear all',
+    alcohol:'With alcohol', nonalc:'Non-alcoholic',
+    antipastiSub:'Italian starters', pastaSub:'Homemade pasta from scratch',
+    pesceSub:'Fish & seafood', pizzaSub:'Sourdough & wood-fired',
+    dolciSub:'Desserts', dryckSub:'Italian wines, beer, cocktails & coffee — Salute!',
+    villaDesc:'Fill your freezer with delicious stone-baked pizza, perfect to have at home when you want something quick, easy and really tasty. Our pizzas come in several popular varieties.',
+    addToOrder:'Add to order', addedToOrder:'Added to order',
+    ingredients:'Ingredients', allergens:'Allergens', nutrition:'Nutrition',
+    region:'Region', grape:'Grape', size:'Size',
+    customize:'Customize', spiceLevel:'Spice level', mild:'Mild', medium:'Medium', hot:'Hot',
+    addOns:'Add-ons', addExtraCheese:'+ extra cheese', addSideSalad:'+ side salad',
+    hours:'Hours', hoursNote:'* Kitchen closes, restaurant stays open a bit longer.',
+    footerAbout:'Modern Swedish-Italian restaurant in the heart of Örnsköldsvik. We cook from scratch with love for both Italian and Nordic traditions.',
+    shareMenu:'Share & download', downloadPdf:'Download menu (PDF)', scanQr:'Scan QR',
+    lastUpdated:'Last updated', showing:'showing',
+    ageGateTitle:'Minimum age 20', ageGateText:'You must be at least 20 years old to order alcoholic drinks.',
+    ageYes:'Yes, I\'m 20+', ageNo:'No',
+    drinkAll:'All drinks', drinkCocktails:'Cocktails & Aperitif', drinkSparkling:'Sparkling',
+    drinkWhite:'White & Rosé', drinkRed:'Red', drinkBeer:'Beer & Cider',
+    drinkNonAlc:'Non-alcoholic', drinkCoffee:'Coffee', drinkDessert:'Dessert wine',
+    glass:'Glass', bottle:'Bottle', perGlass:'/glass', perBottle:'/bottle',
+    /* NY */
+    lunch:'Lunch', lunchTitle:"Today's lunch", lunchSub:'Tuesday–Friday 11–14', lunchToday:'Today',
+    lunchIncl:'145 SEK · incl. table water, coffee & cookie',
+    lunchClosed:'No lunch served today — welcome to our à la carte menu.',
+    downloadLunch:'Download lunch menu (PDF)', qrHint:'Scan to open the menu on your phone',
+    pdfBusy:'Generating PDF…', pdfError:'Could not create the PDF. Please try again.', added:'added',
+    cartLabel:'Order', dishes:'items',
+    villaBuy:'Ask in the restaurant or call us to order and pick up.', villaOrder:'Order: +46 660-22 21 66',
+    pdfTitle:'Menu', pdfLunchTitle:'Lunch menu', days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  }
+};
+
+/* ---------- 4. State ---------- */
+let currentLang = 'sv';
+let activeFilters = new Set();
+let activeCat = 'all';
+let activeDrinkSub = 'all';
+let pendingAlcoholItem = null;
+
+/* ---------- 5. Render menu cards ---------- */
+function dietIcon(tag){
+  const map={vegetarian:'🌱',vegan:'🌿',glutenfree:'GF',spicy:'🌶️'};
+  return `<span class="diet-badge">${map[tag]||''} ${tag.toUpperCase()}</span>`;
+}
+
+function cardHTML(item){
+  const chefBadge = item.chef
+    ? `<span class="chef-pick">⭐ ${I18N[currentLang].chefPick}</span>` : '';
+  const abvBadge = item.abv
+    ? `<span class="abv-badge">${item.abv}</span>` : '';
+  const t = I18N[currentLang];
+
+  let priceBlock = '';
+  if(item.priceGlass !== undefined && item.priceBottle !== undefined){
+    priceBlock = `
+      <div class="price-split">
+        <span class="p-glass">${t.glass} <strong>${item.priceGlass}</strong></span>
+        <span class="p-bottle">${t.bottle} <strong>${item.priceBottle}</strong></span>
+      </div>`;
+  } else if(item.priceGlass !== undefined){
+    priceBlock = `<div class="price-split"><span class="p-glass">${t.glass} <strong>${item.priceGlass}</strong></span></div>`;
+  } else if(item.priceBottle !== undefined){
+    priceBlock = `<div class="price-split"><span class="p-bottle">${t.bottle} <strong>${item.priceBottle}</strong></span></div>`;
+  } else {
+    priceBlock = `<div class="card-price">${item.price} <small>kr</small></div>`;
+  }
+
+  return `
+  <article class="card" tabindex="0" role="button" aria-label="${currentLang==='sv'?item.sv:item.en}" data-id="${item.id}"
+           data-diet="${(item.diet||[]).join(',')}"
+           data-chef="${item.chef?'1':'0'}"
+           data-alcohol="${item.alcohol?'1':'0'}"
+           data-sub="${item.sub||''}">
+    <div class="card-img-wrap">
+      <img class="card-img" src="${item.img}" alt="${item.sv}" width="800" height="600" loading="lazy" data-cat="${item.sub||item.cat}"/>
+      <div class="card-badges">${(item.diet||[]).map(dietIcon).join('')}${abvBadge}</div>
+      ${chefBadge}
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">${item.sv}</h3>
+      <div class="card-title-en">${item.en}${item.region?' · '+item.region:''}${item.size?' · '+item.size:''}</div>
+      <p class="card-desc">${currentLang==='sv'?item.desc:item.descEn}</p>
+      <div class="card-foot">
+        ${priceBlock}
+        <span class="card-cta" aria-hidden="true">+</span>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderAllCards(){
+  const groups = {antipasti:[],pasta:[],pesce:[],pizza:[],dolci:[],dryck:[]};
+  MENU.forEach(m=>groups[m.cat].push(m));
+  Object.keys(groups).forEach(cat=>{
+    if(cat==='dryck') return;
+    const grid = document.getElementById('grid-'+cat);
+    if(grid) grid.innerHTML = groups[cat].map(cardHTML).join('');
+  });
+  renderDrinks();
+  renderLunch(); renderVilla(); updateCart();
+  applyFilters();
+}
+
+function renderDrinks(){
+  const grid = document.getElementById('grid-dryck');
+  const drinks = MENU.filter(m=>m.cat==='dryck');
+  const filtered = activeDrinkSub==='all' ? drinks : drinks.filter(d=>d.sub===activeDrinkSub);
+  grid.innerHTML = filtered.map(cardHTML).join('');
+  applyFilters();
+}
+
+/* ---------- 6. Drink sub-nav ---------- */
+document.querySelectorAll('.subnav-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.subnav-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeDrinkSub = btn.dataset.sub;
+    renderDrinks();
+  });
+});
+
+/* ---------- 7. Filtering ---------- */
+function applyFilters(){
+  const cards = document.querySelectorAll('.card');
+  let visible = 0;
+  cards.forEach(card=>{
+    const diets = (card.dataset.diet||'').split(',').filter(Boolean);
+    const chef = card.dataset.chef==='1';
+    const alcohol = card.dataset.alcohol==='1';
+    let show = true;
+    if(activeFilters.size>0){
+      for(const f of activeFilters){
+        if(f==='chef'){ if(!chef){show=false;break;} }
+        else if(f==='alcohol'){ if(!alcohol){show=false;break;} }
+        else if(f==='nonalc'){ if(alcohol){show=false;break;} }
+        else { if(!diets.includes(f)){show=false;break;} }
+      }
+    }
+    const cat = card.closest('.menu-section').id;
+    if(activeCat!=='all' && cat!==activeCat) show=false;
+    if(cat==='dryck' && activeDrinkSub!=='all' && card.dataset.sub!==activeDrinkSub) show=false;
+    card.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+  const t = I18N[currentLang];
+  document.getElementById('filterCount').textContent = `${visible} ${t.showing}`;
+}
+
+document.querySelectorAll('.filter-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const f = btn.dataset.filter;
+    if(activeFilters.has(f)){ activeFilters.delete(f); btn.classList.remove('active'); btn.setAttribute('aria-pressed','false'); }
+    else { activeFilters.add(f); btn.classList.add('active'); btn.setAttribute('aria-pressed','true'); }
+    applyFilters();
+  });
+});
+document.getElementById('clearFilters').addEventListener('click',()=>{
+  activeFilters.clear();
+  document.querySelectorAll('.filter-chip').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});
+  applyFilters();
+});
+
+/* ---------- 8. Category nav ---------- */
+document.querySelectorAll('.nav-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    activeCat = tab.dataset.cat;
+    if(activeCat==='all') window.scrollTo({top:0,behavior:'smooth'});
+    else document.getElementById(activeCat).scrollIntoView({behavior:'smooth'});
+    applyFilters();
+  });
+});
+
+const sections = ['antipasti','pasta','pesce','pizza','lunch','dolci','dryck','villa'];
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-tab').forEach(t=>{
+        t.classList.toggle('active', t.dataset.cat===e.target.id);
+      });
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) observer.observe(el);
+});
+
+/* ---------- 9. Modal ---------- */
+const modal = document.getElementById('modal');
+const modalInner = document.getElementById('modalInner');
+const modalImg = document.getElementById('modalImg');
+const modalBody = document.getElementById('modalBody');
+const modalPrice = document.getElementById('modalPrice');
+
+let openerEl = null, currentItemId = null;
+function openModal(id){
+  const item = getItem(id);
+  if(!item) return;
+  openerEl = document.activeElement; // NY: kom ihåg var fokus var
+
+  if(item.alcohol){
+    pendingAlcoholItem = id;
+    document.getElementById('ageGate').classList.remove('hidden');
+    return;
+  }
+  renderModal(id);
+}
+
+function renderModal(id){
+  const item = getItem(id);
+  if(!item) return;
+  currentItemId = id;
+  modalImg.dataset.cat = item.sub || item.cat;
+  modalImg.dataset.fb = '';
+  modalImg.src = item.img;
+  modalImg.alt = item.sv;
+
+  const t = I18N[currentLang];
+  let priceHTML = '';
+  if(item.priceGlass !== undefined && item.priceBottle !== undefined){
+    priceHTML = `${item.priceGlass} <small>kr/${t.glass} · ${item.priceBottle} kr/${t.bottle}</small>`;
+  } else if(item.priceGlass !== undefined){
+    priceHTML = `${item.priceGlass} <small>kr/${t.glass}</small>`;
+  } else if(item.priceBottle !== undefined){
+    priceHTML = `${item.priceBottle} <small>kr/${t.bottle}</small>`;
+  } else {
+    priceHTML = `${item.price} <small>kr</small>`;
+  }
+  modalPrice.innerHTML = priceHTML;
+
+  const allergenIcons = {Nötter:'🥜',Mjölk:'🥛',Gluten:'🌾',Ägg:'🥚',Fisk:'🐟',Sulfit:'🍷',Koffein:'☕',Skaldjur:'🦐'};
+
+  modalBody.innerHTML = `
+    <h2 class="modal-title" id="modalTitle">${item.sv}</h2>
+    <div class="modal-title-en">${item.en}</div>
+    <p class="modal-desc">${currentLang==='sv'?item.desc:item.descEn}</p>
+
+    ${item.region || item.grape || item.size ? `
+    <div class="modal-section">
+      <h4>${t.region}</h4>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        ${item.region?`<span><strong>${item.region}</strong></span>`:''}
+        ${item.grape?`<span>${t.grape}: <strong>${item.grape}</strong></span>`:''}
+        ${item.size?`<span>${t.size}: <strong>${item.size}</strong></span>`:''}
+        ${item.abv?`<span>ABV: <strong>${item.abv}</strong></span>`:''}
+      </div>
+    </div>`:''}
+
+    ${item.nutrition?`
+    <div class="modal-section">
+      <h4>${t.nutrition}</h4>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <span><strong>${item.nutrition.kcal}</strong> kcal</span>
+        <span><strong>${item.nutrition.protein}</strong> protein</span>
+        <span><strong>${item.nutrition.fat}</strong> fett</span>
+        <span><strong>${item.nutrition.carbs}</strong> kolh.</span>
+      </div>
+    </div>`:''}
+
+    <div class="modal-section">
+      <h4>${t.ingredients}</h4>
+      <div class="ingredients">${item.ingredients.map(i=>`<span class="ingredient">${i}</span>`).join('')}</div>
+    </div>
+
+    ${item.allergens.length?`
+    <div class="modal-section">
+      <h4>${t.allergens}</h4>
+      <div class="allergen-warn">
+        <span>⚠️</span>
+        <span>${t.allergens}: <strong>${item.allergens.map(a=>`${allergenIcons[a]||''} ${a}`).join(', ')}</strong></span>
+      </div>
+    </div>`:''}
+
+    ${!item.alcohol && item.cat!=='dryck' && item.cat!=='villa' ? `
+    <div class="modal-section">
+      <h4>${t.spiceLevel}</h4>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${['mild','medium','hot'].map((l,i)=>`
+          <button class="custom-option" style="flex:1;min-width:90px;text-align:center" data-spice="${l}" onclick="this.parentElement.querySelectorAll('.custom-option').forEach(b=>b.classList.remove('selected'));this.classList.add('selected')">
+            ${'🌶️'.repeat(i||1)} ${t[l]}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h4>${t.addOns}</h4>
+      <div class="custom-option" onclick="this.classList.toggle('selected')">
+        <span>🧀 ${t.addExtraCheese}</span><span class="custom-price">+25 kr</span>
+      </div>
+      <div class="custom-option" onclick="this.classList.toggle('selected')">
+        <span>🥗 ${t.addSideSalad}</span><span class="custom-price">+29 kr</span>
+      </div>
+    </div>`:''}
+  `;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('modalClose').focus(); // NY
+}
+
+function closeModal(){
+  if(!modal.classList.contains('open')) return;
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+  if(openerEl && document.contains(openerEl)) openerEl.focus(); // NY: fokus tillbaka
+}
+
+document.addEventListener('click',e=>{
+  const card = e.target.closest('.card, [data-open]');
+  if(card) openModal(card.dataset.id || card.dataset.open);
+});
+/* NY: tangentbord — Enter/Space öppnar kort, Tab fångas i modalen */
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ') && e.target.classList && e.target.classList.contains('card')){
+    e.preventDefault(); openModal(e.target.dataset.id);
+  }
+  if(e.key==='Tab' && modal.classList.contains('open') && document.getElementById('ageGate').classList.contains('hidden')){
+    const f = [...modalInner.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"]),.custom-option')].filter(x=>x.offsetParent!==null);
+    if(!f.length) return;
+    f.forEach(x=>{ if(x.classList.contains('custom-option') && !x.hasAttribute('tabindex')) x.setAttribute('tabindex','0'); });
+    const first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+});
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ---------- 10. Age gate ---------- */
+document.getElementById('ageYes').addEventListener('click',()=>{
+  document.getElementById('ageGate').classList.add('hidden');
+  if(pendingAlcoholItem){
+    renderModal(pendingAlcoholItem);
+    pendingAlcoholItem = null;
+  }
+});
+document.getElementById('ageNo').addEventListener('click',()=>{
+  document.getElementById('ageGate').classList.add('hidden');
+  pendingAlcoholItem = null;
+});
+
+/* ---------- 11. Add-to-order toast ---------- */
+const toast = document.getElementById('toast');
+let toastTimer;
+function showToast(msg){
+  document.getElementById('toastText').textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'),2400);
+}
+const cart = [];
+function updateCart(){
+  const n = cart.length, t = I18N[currentLang];
+  const c = document.getElementById('cartCount');
+  c.textContent = n; c.classList.toggle('zero', n===0);
+  document.getElementById('cartBtn').setAttribute('aria-label', `${t.cartLabel}: ${n} ${t.dishes}`);
+}
+document.getElementById('addBtn').addEventListener('click',()=>{
+  const item = getItem(currentItemId); if(!item) return;
+  cart.push(item.id); updateCart();
+  showToast(`✓ ${currentLang==='sv'?item.sv:item.en} ${I18N[currentLang].added}`);
+});
+document.getElementById('cartBtn').addEventListener('click',()=>{
+  showToast(`${I18N[currentLang].cartLabel}: ${cart.length} ${I18N[currentLang].dishes}`);
+});
+
+/* ---------- 12. Language toggle ---------- */
+document.querySelectorAll('.lang-toggle button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.lang-toggle button').forEach(b=>{
+      b.classList.remove('active'); b.setAttribute('aria-pressed','false');
+    });
+    btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+    currentLang = btn.dataset.lang;
+    document.documentElement.lang = currentLang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.dataset.i18n;
+      if(I18N[currentLang][key]) el.textContent = I18N[currentLang][key];
+    });
+    renderAllCards();
+  });
+});
+
+/* ---------- 13. Clock + open/closed ---------- */
+function updateClock(){
+  const now = new Date();
+  const fmt = new Intl.DateTimeFormat('sv-SE',{
+    hour:'2-digit',minute:'2-digit',
+    timeZone:'Europe/Stockholm'
+  }).format(now);
+  document.getElementById('clock').textContent = fmt;
+
+  const stockholmNow = new Date(now.toLocaleString('en-US',{timeZone:'Europe/Stockholm'}));
+  const day = stockholmNow.getDay();
+  if(window.__lunchDay!==undefined && window.__lunchDay!==day && typeof renderLunch==='function') renderLunch();
+  const h = stockholmNow.getHours();
+  const m = stockholmNow.getMinutes();
+  const t = h*60 + m;
+
+  let open = false;
+  if(day===0){ open = t>=16*60 && t<20*60; }
+  else if(day>=2 && day<=4){ open = (t>=11*60&&t<14*60) || (t>=16*60&&t<20*60); }
+  else if(day===5){ open = (t>=11*60&&t<14*60) || (t>=16*60&&t<21*60); }
+  else if(day===6){ open = t>=16*60 && t<21*60; }
+
+  const dot = document.getElementById('statusDot');
+  const label = document.getElementById('statusLabel');
+  dot.classList.toggle('closed', !open);
+  label.classList.toggle('closed', !open);
+  label.textContent = open ? I18N[currentLang].openNow : I18N[currentLang].closed;
+}
+updateClock();
+setInterval(updateClock,30000);
+
+/* ---------- 14. Last updated ---------- */
+document.getElementById('lastUpdated').textContent =
+  new Intl.DateTimeFormat('sv-SE',{year:'numeric',month:'long',day:'numeric'})
+    .format(new Date());
+
+
+/* ---------- NY 16. Lunch ---------- */
+function stockholmDay(){
+  return new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Stockholm'})).getDay();
+}
+function renderLunch(){
+  const box = document.getElementById('lunchBody'); if(!box) return;
+  const t = I18N[currentLang], day = stockholmDay(); window.__lunchDay = day;
+  const todays = LUNCH[day];
+  let html = '';
+  if(todays){
+    const ref = getItem(todays.ref);
+    html += `<div class="lunch-today">
+      <img src="${ref?ref.img:''}" alt="${todays.sv}" width="800" height="600" loading="lazy" data-cat="pasta"/>
+      <div class="lunch-today-body">
+        <span class="lunch-tag">${t.lunchToday} · ${t.days[day]}</span>
+        <h3 class="modal-title">${currentLang==='sv'?todays.sv:todays.en}</h3>
+        <p class="card-desc" style="-webkit-line-clamp:unset;min-height:0">${currentLang==='sv'?todays.desc:todays.descEn}</p>
+        <div class="lunch-price">${LUNCH_PRICE} kr</div>
+        <div class="lunch-incl">${t.lunchIncl.replace(LUNCH_PRICE+' kr · ','').replace(LUNCH_PRICE+' SEK · ','')}</div>
+      </div></div>`;
+  } else {
+    html += `<div class="lunch-closed">${t.lunchClosed}</div>`;
+  }
+  html += '<div class="lunch-week">' + [2,3,4,5].map(d=>{
+    const l = LUNCH[d];
+    return `<div class="lunch-day${d===day?' today':''}"><strong>${t.days[d]}</strong>${currentLang==='sv'?l.sv:l.en}</div>`;
+  }).join('') + '</div>';
+  box.innerHTML = html;
+}
+
+/* ---------- NY 17. Villa Saporito ---------- */
+function renderVilla(){
+  const g = document.getElementById('villaGrid'); if(!g) return;
+  g.innerHTML = VILLA.map(v=>`
+    <button class="villa-card" type="button" data-open="${v.id}" aria-label="${currentLang==='sv'?v.sv:v.en}, ${v.price} kr">
+      <img src="${v.img}" alt="" width="800" height="600" loading="lazy" data-cat="villa"/>
+      <strong>${currentLang==='sv'?v.sv:v.en}</strong><span>${v.price} kr</span>
+    </button>`).join('');
+}
+
+/* ---------- NY 18. Bild-fallback (fångar alla <img>, även dynamiska) ---------- */
+const PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect fill="#F0FDF4" width="100%" height="100%"/><text x="50%" y="50%" font-family="Georgia,serif" font-size="32" fill="#2D6A4F" text-anchor="middle">Saltmagasinet</text></svg>');
+document.addEventListener('error',e=>{
+  const el = e.target;
+  if(!(el instanceof HTMLImageElement) || el.src===PLACEHOLDER || el.src.startsWith('data:')) return;
+  if(!el.dataset.fb){
+    el.dataset.fb = '1';
+    const pool = IMG_POOL[el.dataset.cat] || IMG_POOL.pizza;
+    el.src = U(pool[0]);           // 1: kategori-bild
+  } else {
+    el.src = PLACEHOLDER;          // 2: grön Saltmagasinet-placeholder
+  }
+},true);
+
+/* ---------- NY 19. PDF (html2pdf.js) ---------- */
+function todayISO(){ return new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Stockholm'}).format(new Date()); }
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function priceText(it){
+  const t = I18N[currentLang];
+  if(it.priceGlass!==undefined && it.priceBottle!==undefined) return `${it.priceGlass} / ${it.priceBottle} kr`;
+  if(it.priceGlass!==undefined) return `${it.priceGlass} kr (${t.glass.toLowerCase()})`;
+  if(it.priceBottle!==undefined) return `${it.priceBottle} kr (${t.bottle.toLowerCase()})`;
+  return `${it.price} kr`;
+}
+function pdfItem(it){
+  const sv = currentLang==='sv';
+  return `<div class="pdf-item" style="display:flex;justify-content:space-between;gap:16px;padding:6px 0;border-bottom:1px dotted #ccc;page-break-inside:avoid">
+    <div><strong>${esc(sv?it.sv:it.en)}</strong> <em style="color:#6B7280;font-size:11px">${esc(sv?it.en:it.sv)}</em>
+    <div style="font-size:11.5px;color:#374151">${esc(sv?it.desc:it.descEn)}</div></div>
+    <div style="white-space:nowrap;font-weight:600;color:#2D6A4F">${priceText(it)}</div></div>`;
+}
+function pdfShell(title, body){
+  return `<div style="font-family:Helvetica,Arial,sans-serif;color:#111827;font-size:13px;line-height:1.4">
+    <div style="border-bottom:3px solid #2D6A4F;padding-bottom:8px;margin-bottom:12px">
+      <div style="font-family:Georgia,serif;font-size:28px;color:#2D6A4F">Saltmagasinet</div>
+      <div style="font-size:12px;color:#6B7280">${esc(title)} · Varvskajen 1, Örnsköldsvik · 0660-22 21 66 · ${todayISO()}</div></div>${body}</div>`;
+}
+function buildMenuPdf(){
+  const t = I18N[currentLang];
+  const secs = [['antipasti',t.antipasti],['pasta','Pasta'],['pesce',t.pesce],['pizza','Pizza'],['dolci',t.dolci]];
+  let body = secs.map(([c,n])=>`<h2 style="font-family:Georgia,serif;color:#1B4332;font-size:19px;margin:16px 0 4px;page-break-after:avoid">${esc(n)}</h2>${FOOD.filter(f=>f.cat===c).map(pdfItem).join('')}`).join('');
+  body += `<h2 style="font-family:Georgia,serif;color:#1B4332;font-size:19px;margin:16px 0 4px">${esc(t.dryck)}</h2>` + DRINKS.map(pdfItem).join('');
+  body += `<p style="margin-top:14px;font-size:11px;color:#6B7280">${esc(t.ageGateTitle)}. ${esc(t.hoursNote)}</p>`;
+  return pdfShell(t.pdfTitle, body);
+}
+function buildLunchPdf(){
+  const t = I18N[currentLang];
+  const body = `<h2 style="font-family:Georgia,serif;color:#1B4332;font-size:20px">${esc(t.lunchTitle)} — ${LUNCH_PRICE} kr</h2><p style="color:#374151">${esc(t.lunchIncl.replace(/^[^·]*· /,''))}</p>` +
+    [2,3,4,5].map(d=>{ const l=LUNCH[d]; return `<div class="pdf-item" style="padding:8px 0;border-bottom:1px dotted #ccc;page-break-inside:avoid"><strong>${esc(t.days[d])}: ${esc(currentLang==='sv'?l.sv:l.en)}</strong><div style="font-size:12px;color:#374151">${esc(currentLang==='sv'?l.desc:l.descEn)}</div></div>`; }).join('') +
+    `<p style="margin-top:12px;font-size:12px;color:#6B7280">${esc(t.lunchSub)}</p>`;
+  return pdfShell(t.pdfLunchTitle, body);
+}
+async function downloadPdf(kind, btn){
+  const t = I18N[currentLang], label = btn.querySelector('.pdf-label'), old = label.textContent;
+  if(typeof html2pdf==='undefined'){ showToast('⚠️ '+t.pdfError); return; }
+  btn.disabled = true; label.innerHTML = `<span class="spinner" aria-hidden="true"></span> ${t.pdfBusy}`;
+  try{
+    const html = kind==='lunch' ? buildLunchPdf() : buildMenuPdf();
+    await html2pdf().set({
+      margin:[12,12,14,12],
+      filename:`Saltmagasinet-${kind==='lunch'?'lunch':'meny'}-${todayISO()}.pdf`,
+      image:{type:'jpeg',quality:.95},
+      html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff'},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+      pagebreak:{mode:['css','legacy'],avoid:'.pdf-item'}
+    }).from(html,'string').save();
+  }catch(err){
+    console.error(err); showToast('⚠️ '+t.pdfError);
+  }finally{
+    btn.disabled = false; label.textContent = I18N[currentLang][kind==='lunch'?'downloadLunch':'downloadPdf'] || old;
+  }
+}
+document.getElementById('pdfMenuBtn').addEventListener('click',e=>downloadPdf('menu',e.currentTarget));
+document.getElementById('pdfLunchBtn').addEventListener('click',e=>downloadPdf('lunch',e.currentTarget));
+
+/* ---------- 15. Initial render ---------- */
+renderAllCards();
+</script>
+</body>
+</html>
