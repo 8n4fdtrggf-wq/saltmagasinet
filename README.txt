@@ -4,8 +4,11 @@ SALTMAGASINET – WEBBLEVERANS
 Innehåll
 --------
 index.html       Själva webbsidan
+menu.html        À la carte-, dryckes- och take-away-menyer
 styles.css       All design och responsiv layout
+menu.css         Menysidans tryckta menyutseende
 script.js        Mobilmeny, header och mjuka animationer
+menu.js          Aktiv markering mellan menysektionerna
 assets/          Lokala bilder som används av sidan
 
 Så förhandsvisas sidan
